@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap');
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Mukta";
+    background-color: rgb(233, 233, 233);
+}     
+        
+.navbar{
+    height:60px;
+    background-color: #ffffff;
+    color:#14125c; 
+    gap: 200px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.navbar #logo{
+    font-family: "Ranchers", cursive;
+    /* background: url(logo.jpeg); */
+    margin: 1.5px;
+    display: inline-flex;
+    font-size: 28px;
+    background-position: 0 0;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #5b728a54;
+    animation: animatedOne 100s linear infinite;
+}
+@keyframes animatedOne {
+  from {
+      background-position: 0 0;
+  }
+  to {
+      background-position: 100% 0;
+  }
+}
+.navbar a {
+    color: #14125c;
+    margin-left: 30px;
+    text-decoration: none;
+    font-weight: 600;
+}
+.containersign {
+    display: flex;
+    height: 100vh;
+    margin: 4vh 25vh;
+    width: 1250px;
+    justify-content: center;
+    box-shadow: 2px 2px 8px 1px rgba(0, 0, 0, 0.16);
+}
+
+.left-side {
+    flex: 1;
+    width:50%;
+    border-radius: 8px;
+    justify-content: center;
+    padding: 4.5% 0 4.7% 3.5%;
+    /* background-image: url('signin.png');  */
+    color: #282e3e;
+    background-size: cover;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 40px;
+}
+
+
+
+.right-side {
+    width: 50%;
+    display: flex;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    color: #586380;
+}
+
+.left-side p{
+    margin-top: 45px;
+    
+}
+.left-side ul{
+    margin-top: 45px;
+    font-size:20px;
+    margin-left: 50px;
+    font-weight: 500;
+}
+
+
+.form-container {
+    max-width: 900px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.form-container h2 {
+    text-align: left;
+    color: #333;
+    font-size: 30px;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container label {
+    margin-bottom: 8px;
+}
+
+.form-container input {
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color:#F6F7FB;
+    border:none;
+    font-family:'mukta';
+    font-weight:500;
+    font-size: 15px;
+    box-shadow: 1px 1px 1px 0.5px rgba(0, 0, 0, 0.1);
+}
+
+.form-container button {
+    background-color: #C8BFE7;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup {
+    margin: 70px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 30%;
+    position: relative;
+    transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+    margin-top: 0;
+    color: #333;
+    font-family: "mukta";
+}
+
+.popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #C8BFE7;
+}
+
+.popup .close:hover {
+    color: #C8BFE7;
+}
+
+.popup .content {
+    max-height: 30%;
+    overflow: auto;
+}
+
+.ak {
+    width: 100%;
+    padding: 120px 10px 8px 8px;
+    border-radius: 4px;
+    border: none;
+    font-weight: 500;
+    font-size: 1rem;
+    outline: none;
+    cursor: text;
+    font-family:"mukta";
+}
+
+@media screen and (max-width: 700px) {
+    .box {
+        width: 70%;
+    }
+
+    .popup {
+        width: 70%;
+    }
+}
+
+a.hover {
+    background-color: #fff;
+}
