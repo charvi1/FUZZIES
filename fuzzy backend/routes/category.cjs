@@ -2,7 +2,6 @@ const express = require('express');
 const { v2: cloudinary } = require('cloudinary');
 const Category = require('../models/category.cjs'); // Correct import
 const router = express.Router();
-//const pLimit = require('p-limit');
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -82,7 +81,10 @@ router.delete('/:id', async (req, res) => {
 // PUT update a category by ID
 router.put('/:id', async (req, res) => {
     try {
-        const limit = (await import('p-limit')).default;
+        const pLimit = (await import('p-limit')).default;
+        const limit = pLimit(2);
+
+        // Update category
         const category = await Category.findByIdAndUpdate(
             req.params.id,
             {

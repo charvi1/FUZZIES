@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "backend for fuzzy",
   "main": "main.js",
-  "type":"module",
+  "type": "module",
   "scripts": {
     "start": "node main.cjs"
   },

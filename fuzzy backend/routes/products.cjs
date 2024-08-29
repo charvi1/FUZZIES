@@ -1,7 +1,7 @@
 const express = require('express');
-const { Product } = require('../models/products.cjs');
-const { Category } = require('../models/category.cjs');
-const { v2: cloudinary } = require('cloudinary'); // Ensure Cloudinary is imported
+const Product = require('../models/products.cjs'); // Import Product model
+const Category = require('../models/category.cjs'); // Import Category model
+const { v2: cloudinary } = require('cloudinary');
 const router = express.Router();
 
 // Configure Cloudinary
@@ -39,6 +39,7 @@ router.get('/', async (req, res) => {
 
         res.send(productList);
     } catch (err) {
+        console.error('Error:', err); // Log errors for debugging
         res.status(500).json({ success: false, error: err.message });
     }
 });
@@ -46,6 +47,8 @@ router.get('/', async (req, res) => {
 // Create a new product
 router.post('/create', async (req, res) => {
     try {
+        console.log('Request Body:', req.body);  // Log the request body for debugging
+
         const pLimit = (await import('p-limit')).default;
         const limit = pLimit(2);
 
@@ -57,8 +60,13 @@ router.post('/create', async (req, res) => {
         const uploadResults = await Promise.all(imageUploads);
         const imageUrls = uploadResults.map(result => result.secure_url);
 
-        // Validate category
-        const category = await Category.findById(req.body.category);
+        // Log the category name received
+        console.log('Category Name:', req.body.category);
+
+        // Validate category by name
+        const category = await Category.findOne({ name: req.body.category });
+        console.log('Found Category:', category);  // Log the result of the findOne query
+
         if (!category) {
             return res.status(404).json({ success: false, message: 'Invalid category' });
         }
@@ -68,9 +76,9 @@ router.post('/create', async (req, res) => {
             name: req.body.name,
             description: req.body.description,
             price: req.body.price,
-            category: req.body.category,
+            category: category._id, // Store the category ID
             rating: req.body.rating,
-            images: imageUrls // Ensure you pass the image URLs if needed
+            images: imageUrls
         });
 
         const savedProduct = await product.save();
@@ -80,6 +88,7 @@ router.post('/create', async (req, res) => {
 
         res.status(201).json({ success: true, data: savedProduct });
     } catch (err) {
+        console.error('Error:', err);  // Log errors for debugging
         res.status(500).json({ success: false, error: err.message });
     }
 });
@@ -95,8 +104,58 @@ router.delete('/:id', async (req, res) => {
 
         res.status(200).json({ success: true, message: 'Product deleted successfully', data: deletedProduct });
     } catch (err) {
+        console.error('Error:', err);  // Log errors for debugging
         res.status(500).json({ success: false, error: err.message });
     }
 });
+
+// Update a Product
+router.put('/:id', async (req, res) => {
+    try {
+        // Log the request body and parameters for debugging
+        console.log('Request Body:', req.body);
+        console.log('Product ID:', req.params.id);
+
+        // Upload images to Cloudinary if they are provided
+        let imageUrls = [];
+        if (req.body.images && req.body.images.length > 0) {
+            const pLimit = (await import('p-limit')).default;
+            const limit = pLimit(2);
+            const imageUploads = req.body.images.map((image) => limit(() => cloudinary.uploader.upload(image)));
+            const uploadResults = await Promise.all(imageUploads);
+            imageUrls = uploadResults.map(result => result.secure_url);
+        }
+
+        // Validate category by name
+        const category = await Category.findOne({ name: req.body.category });
+        if (!category) {
+            return res.status(404).json({ success: false, message: 'Invalid category' });
+        }
+
+        // Update the product
+        const updatedProduct = await Product.findByIdAndUpdate(
+            req.params.id,
+            {
+                name: req.body.name,
+                description: req.body.description,
+                price: req.body.price,
+                category: category._id, // Update with the category ID
+                rating: req.body.rating,
+                images: imageUrls.length > 0 ? imageUrls : req.body.images // Use the new image URLs if provided
+            },
+            { new: true } // Return the updated product
+        );
+
+        if (!updatedProduct) {
+            return res.status(404).json({ success: false, message: 'Product not found' });
+        }
+
+        res.status(200).json({ success: true, data: updatedProduct });
+    } catch (err) {
+        console.error('Error:', err);  // Log errors for debugging
+        res.status(500).json({ success: false, error: err.message });
+    }
+});
+
 
 module.exports = router;
