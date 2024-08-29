@@ -1,6 +1,6 @@
-// src/components/FeaturesSection.js
+
 import React from 'react';
-import '../App.css'; // Create a separate CSS file if needed
+import '../App.css'; 
 
 const FeaturesSection = () => {
   return (

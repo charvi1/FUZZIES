@@ -1,4 +1,4 @@
-// src/components/BrandItem.js
+
 import React from 'react';
 
 const BrandItem = ({ src, alt }) => {

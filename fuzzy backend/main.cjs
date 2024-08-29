@@ -1,21 +1,14 @@
 require('dotenv').config();
-//dotenv.config();
+
 const express = require('express');
 const app= express();
  const bodyParser = require('body-parser');
  const mongoose = require('mongoose');
 const cors = require('cors');
-// import express from 'express';
-// import bodyParser from 'body-parser';
-// import mongoose from 'mongoose';
-// import cors from 'cors';
-
-//const app = express();
-
-app.use( cors());
 const port = process.env.PORT || 2323; // Fallback to 2323 if PORT is not defined in .env
 
 // Middleware
+app.use( cors());
 app.use(bodyParser.json());
 
 // Routes
