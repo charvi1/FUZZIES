@@ -1,0 +1,28 @@
+{
+  "name": "fuzzy-backend",
+  "version": "1.0.0",
+  "description": "backend for fuzzy",
+  "main": "main.js",
+  "type":"module",
+  "scripts": {
+    "start": "node main.cjs"
+  },
+  "keywords": [
+    "node",
+    "fuzzy"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cloudinary": "^2.4.0",
+    "cors": "^2.8.5",
+    "dot": "^1.1.3",
+    "dotenv": "^16.4.5",
+    "env": "^0.0.2",
+    "express": "^4.19.2",
+    "mongoose": "^8.5.4",
+    "nodemon": "^3.1.4",
+    "p-limit": "^6.1.0"
+  }
+}
