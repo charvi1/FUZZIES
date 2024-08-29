@@ -12,7 +12,7 @@ const cors = require('cors');
 
 //const app = express();
 
-app.options('*', cors());
+app.use( cors());
 const port = process.env.PORT || 2323; // Fallback to 2323 if PORT is not defined in .env
 
 // Middleware
