@@ -89,7 +89,7 @@ router.put('/:id', async (req, res) => {
             req.params.id,
             {
                 name: req.body.name,
-                images: req.body.images, // Ensure this matches the incoming data
+                images: req.body.images, 
                 color: req.body.color
             },
             { new: true }

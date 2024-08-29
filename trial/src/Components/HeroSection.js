@@ -1,6 +1,6 @@
-// src/components/HeroSection.js
+
 import React from 'react';
-import '../App.css'; // Create a separate CSS file for styling
+import '../App.css'; 
 
 const HeroSection = () => {
   return (

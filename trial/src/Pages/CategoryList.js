@@ -10,7 +10,7 @@ const CategoryList = () => {
       <ul>
         {categories.map(category => (
           <li key={category}>
-            {/* Link to the ProductsPage using the category name */}
+            
             <Link to={`/products/${category}`}>
               <button>{category}</button>
             </Link>

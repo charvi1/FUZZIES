@@ -39,7 +39,7 @@ router.get('/', async (req, res) => {
 
         res.send(productList);
     } catch (err) {
-        console.error('Error:', err); // Log errors for debugging
+        console.error('Error:', err); 
         res.status(500).json({ success: false, error: err.message });
     }
 });
@@ -47,7 +47,7 @@ router.get('/', async (req, res) => {
 // Create a new product
 router.post('/create', async (req, res) => {
     try {
-        console.log('Request Body:', req.body);  // Log the request body for debugging
+        console.log('Request Body:', req.body);  
 
         const pLimit = (await import('p-limit')).default;
         const limit = pLimit(2);
@@ -60,7 +60,7 @@ router.post('/create', async (req, res) => {
         const uploadResults = await Promise.all(imageUploads);
         const imageUrls = uploadResults.map(result => result.secure_url);
 
-        // Log the category name received
+       
         console.log('Category Name:', req.body.category);
 
         // Validate category by name
@@ -104,7 +104,7 @@ router.delete('/:id', async (req, res) => {
 
         res.status(200).json({ success: true, message: 'Product deleted successfully', data: deletedProduct });
     } catch (err) {
-        console.error('Error:', err);  // Log errors for debugging
+        console.error('Error:', err);  
         res.status(500).json({ success: false, error: err.message });
     }
 });

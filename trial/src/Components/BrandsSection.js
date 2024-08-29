@@ -1,8 +1,7 @@
 // src/components/BrandsSection.js
 import React from 'react';
 import BrandItem from './BrandItem';
-import '../App.css'; // Create a separate CSS file if needed
-
+import '../App.css'; 
 const BrandsSection = () => {
   // Array of brand information
   const brands = [

@@ -1,7 +1,7 @@
-// src/components/Header.js
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../App.css'; // Assuming the CSS is moved to Header.css
+import '../App.css'; 
 
 const Header = () => {
   return (

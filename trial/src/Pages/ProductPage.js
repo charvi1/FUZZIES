@@ -14,7 +14,7 @@ const ProductsPage = () => {
       try {
         // Make sure to use the correct query parameter name
         const response = await axios.get(`http://localhost:2151/api/products`, {
-          params: { categoryNames: categoryName } // Use categoryNames query parameter
+          params: { categoryNames: categoryName } 
         });
         setProducts(response.data);
         setLoading(false);
