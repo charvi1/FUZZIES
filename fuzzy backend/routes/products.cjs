@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
         
         // Check if category filter is provided in the query
         if (req.query.categoryNames) {
-            const categoryNames = req.query.categoryNames.split(','); // Split comma-separated category names
+            const categoryNames = req.query.categoryNames.split(',').map(name => name.trim()); // Split comma-separated category names
 
             const categories = await Category.find({ name: { $in: categoryNames } });
             const categoryIds = categories.map(category => category._id);
