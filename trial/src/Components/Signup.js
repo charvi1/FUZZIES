@@ -27,6 +27,17 @@ const SignUp = () => {
   };
 
   return (
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        width:'210vh',
+        background: "url('av.png') no-repeat center center fixed", // Change '/fuzzy.png' to your actual image path
+        backgroundSize: 'cover',
+      }}
+    >
     <div className="container">
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
@@ -58,6 +69,7 @@ const SignUp = () => {
         {error && <p>{error}</p>}
       </form>
       <a href="/">Go back to login page</a>
+    </div>
     </div>
   );
 };
