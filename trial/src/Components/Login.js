@@ -21,9 +21,10 @@ const Login = () => {
 
       // Store token or handle successful login
       console.log('Login successful', response.data);
+      localStorage.setItem('token', response.data.token);
 
       // Redirect to home page
-      navigate('/'); // Redirect to the home page or any other route
+      navigate('/home'); // Redirect to the home page or any other route
     } catch (err) {
       setError('Login failed. Please check your credentials and try again.');
     }
@@ -41,7 +42,7 @@ const Login = () => {
         backgroundSize: 'cover',
       }}
     >
-    <div
+      <div
         className="container"
         style={{
           background: 'rgba(255, 247, 230, 0.9)',
@@ -52,30 +53,30 @@ const Login = () => {
           zIndex: 1,
         }}
       >
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          placeholder="Email"
-          name="email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          placeholder="Password"
-          name="password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <input className="sub" type="submit" value="Login" />
-        {error && <div className="error">{error}</div>}
-        <h3>Don’t have an account?</h3>
-        <a href="/signup">Create a new account</a>
-      </form>
-    </div>
+        <h1>Login</h1>
+        <form onSubmit={handleSubmit}>
+          <input
+            placeholder="Email"
+            name="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            placeholder="Password"
+            name="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <input className="sub" type="submit" value="Login" />
+          {error && <div className="error">{error}</div>}
+          <h3>Don’t have an account?</h3>
+          <a href="/signup">Create a new account</a>
+        </form>
+      </div>
     </div>
   );
 };

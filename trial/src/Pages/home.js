@@ -1,22 +1,21 @@
-
+// src/Pages/home.js
 import React from 'react';
-import '../App.css'; 
+import Header from '../Components/header'; 
+import Footer from '../Components/footer';
 import HeroSection from '../Components/HeroSection'; 
 import CategorySection from '../Components/CategorySection'; 
 import FeaturesSection from '../Components/FeaturesSection'; 
 import BrandsSection from '../Components/BrandsSection';
-import Header from '../Components/header'; // Adjust the path as needed
-import Footer from '../Components/footer';
 
 const Home = () => {
   return (
     <main>
-      <Header/>
+      <Header />
       <HeroSection />
       <CategorySection />
       <FeaturesSection />
       <BrandsSection />
-      <Footer/>
+      <Footer />
     </main>
   );
 };
