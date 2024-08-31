@@ -5,7 +5,7 @@ import '../App.css';
 
 const Header = () => {
   return (
-    <header className="about-header">
+    <div className="header">
       <div className="logo">
         <img src="logo2.png" alt="Logo" />
       </div>
@@ -26,7 +26,7 @@ const Header = () => {
       
         
         
-    </header>
+    </div>
   );
 };
 

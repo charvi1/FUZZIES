@@ -26,6 +26,9 @@ const CategorySection = () => {
 
   return (
     <section className="category-section">
+      <img className="rabbit" src="paws.png" alt="Rabbit" />
+      <h1 className='section-h1'>Hello Hooman!</h1>
+      <h3 className='h3shoppingtoday'>Who are you shopping for today?</h3>
       <div className="category">
         <div className="items">
           {categories.map(category => (
