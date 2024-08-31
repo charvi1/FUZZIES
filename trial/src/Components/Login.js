@@ -30,7 +30,28 @@ const Login = () => {
   };
 
   return (
-    <div className="container">
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        width:'210vh',
+        background: "url('av.png') no-repeat center center fixed", // Change '/fuzzy.png' to your actual image path
+        backgroundSize: 'cover',
+      }}
+    >
+    <div
+        className="container"
+        style={{
+          background: 'rgba(255, 247, 230, 0.9)',
+          padding: '30px',
+          borderRadius: '10px',
+          boxShadow: '0px 10px 20px rgba(0, 0, 0, 0.1)',
+          textAlign: 'center',
+          zIndex: 1,
+        }}
+      >
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <input
@@ -54,6 +75,7 @@ const Login = () => {
         <h3>Don’t have an account?</h3>
         <a href="/signup">Create a new account</a>
       </form>
+    </div>
     </div>
   );
 };
