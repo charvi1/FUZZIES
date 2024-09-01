@@ -93,7 +93,6 @@
     font-size: 14px;
 }
 
-
 .carousel-button {
     border: none;
     color: white;
@@ -110,6 +109,7 @@
     z-index: 10;
     background-color: #21211f;
 }
+
 .left-button {
     left: 10px;
 }
@@ -117,4 +117,3 @@
 .right-button {
     right: 7px;
 }
-
