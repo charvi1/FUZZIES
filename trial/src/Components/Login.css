@@ -1,4 +1,4 @@
-.container {
+.container-login{
     background: rgba(255, 247, 230, 0.9); 
     padding: 30px;
     border-radius: 10px;
@@ -8,19 +8,18 @@
     z-index: 1;
 }
 
-h1 {
+.login-h1 {
     margin-bottom: 20px;
     color: #8b5e34;
 }
 
-form {
+.login-form{
     display: flex;
     flex-direction: column;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="email"] {
+
+.login-input{
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #d9d2c3;
@@ -45,18 +44,18 @@ input[type="email"] {
     background-color: #704c28; 
 }
 
-h3 {
+.login-h3{
     margin-top: 15px;
     color: #6b4c2a; 
 }
 
-a {
+.login-anchor {
     color: #8b5e34;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
 }
 
-a:hover {
+.login-anchor:hover {
     color: #704c28;
 }

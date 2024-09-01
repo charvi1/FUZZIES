@@ -1,4 +1,4 @@
-.container {
+.signup-container{
     background: rgba(255, 247, 230, 0.9); 
     padding: 30px;
     border-radius: 10px;
@@ -8,19 +8,18 @@
     z-index: 1;
 }
 
-h1 {
+.signup-h1{
     margin-bottom: 20px;
     color: #8b5e34;
 }
 
-form {
+.signup-form{
     display: flex;
     flex-direction: column;
     gap: 15px; 
 }
 
-input[type="text"],
-input[type="password"] {
+.input-signup{
     padding: 10px;
     border: 1px solid #d9d2c3;
     border-radius: 5px;
@@ -29,7 +28,7 @@ input[type="password"] {
     outline: none;
 }
 
-.sub {
+.sub-signup {
     padding: 10px;
     background-color: #8b5e34; 
     color: white;
@@ -40,16 +39,11 @@ input[type="password"] {
     font-size: 15px;
 }
 
-.sub:hover {
+.sub-signup:hover {
     background-color: #704c28; 
 }
 
-h3 {
-    margin-top: 15px;
-    color: #6b4c2a; 
-}
-
-a {
+.signup-anchor{
     color: #8b5e34;
     text-decoration: none;
     font-weight: bold;
@@ -58,6 +52,6 @@ a {
     margin-top: 20px; 
 }
 
-a:hover {
+.signup-anchor:hover {
     color: #704c28;
 }
