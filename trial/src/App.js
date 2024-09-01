@@ -12,16 +12,9 @@ import Product from './Pages/Product';
 function App() {
   return (
     <Router>
-      <main>
-  
+      <main>   
+      <Routes>
             <Route path="/" element={<Home />} />
-        
-          <Route path="/login" element={<Signup_login />} />
-          <Route path="/signup" element={<Signup_login />} />
-
-          
-            <Route path="/home" element={<Home />} />
-
             <Route path="/about" element={<AboutPage />} />
             <Route path="/products/:categoryName" element={<Product/>} />
             <Route path="/categories" element={<CategoryList />} />
