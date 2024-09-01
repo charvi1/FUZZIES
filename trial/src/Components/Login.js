@@ -21,62 +21,41 @@ const Login = () => {
 
       // Store token or handle successful login
       console.log('Login successful', response.data);
-      localStorage.setItem('token', response.data.token);
 
       // Redirect to home page
-      navigate('/home'); // Redirect to the home page or any other route
+      navigate('/'); // Redirect to the home page or any other route
     } catch (err) {
       setError('Login failed. Please check your credentials and try again.');
     }
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-        width:'210vh',
-        background: "url('av.png') no-repeat center center fixed", // Change '/fuzzy.png' to your actual image path
-        backgroundSize: 'cover',
-      }}
-    >
-      <div
-        className="container"
-        style={{
-          background: 'rgba(255, 247, 230, 0.9)',
-          padding: '30px',
-          borderRadius: '10px',
-          boxShadow: '0px 10px 20px rgba(0, 0, 0, 0.1)',
-          textAlign: 'center',
-          zIndex: 1,
-        }}
-      >
-        <h1>Login</h1>
-        <form onSubmit={handleSubmit}>
-          <input
-            placeholder="Email"
-            name="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            placeholder="Password"
-            name="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <input className="sub" type="submit" value="Login" />
-          {error && <div className="error">{error}</div>}
-          <h3>Don’t have an account?</h3>
-          <a href="/signup">Create a new account</a>
-        </form>
-      </div>
+    <div className="container-login">
+      <h1 className='login-h1'>Login</h1>
+      <form className='login-form' onSubmit={handleSubmit}>
+        <input
+        className='login-input'
+          placeholder="Email"
+          name="email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          className='login-input'
+          placeholder="Password"
+          name="password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <input className="sub" type="submit" value="Login" />
+        {error && <div className="error">{error}</div>}
+        <h3 className='login-h3'>Don’t have an account?</h3>
+        <a  className='login-anchor' href="/signup">Create a new account</a>
+      </form>
     </div>
   );
 };

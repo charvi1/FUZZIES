@@ -4,17 +4,13 @@ import { FaSearch } from "react-icons/fa";
 import { FaLocationArrow } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
-import '../App.css'; 
+import './ProductHeader.css'; 
 
-const Header = () => {
+const ProductHeader = () => {
   return (
-    <div className="header">
-      <div className="logo">
-        <img src="logo2.png" alt="Logo" />
-      </div>
-      <hr />
-      <nav>
-        <ul>
+    <div className="Product-header">
+        <nav className='product-nav'>
+        <ul className='product-ul'>
           <li><Link to="/">HOME</Link></li>
           <li><Link to="/about">WHO WE ARE</Link></li>
           <div className="search-bar">
@@ -33,4 +29,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default ProductHeader;

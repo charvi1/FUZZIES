@@ -3,26 +3,23 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './Pages/home';
 import AboutPage from './Pages/about';
 import Signup_login from './Pages/Signup_login';
-import ProductsPage from './Pages/ProductPage';
+
 import CategoryList from './Pages/CategoryList';
-import PrivateRoute from './Components/PrivateRoutes';
+
 import './App.css'; // Global styles
+import Product from './Pages/Product';
 
 function App() {
   return (
     <Router>
       <main>
         <Routes>
-          <Route path="/" element={<Signup_login />} />
-          <Route path="/login" element={<Signup_login />} />
-          <Route path="/signup" element={<Signup_login />} />
-
-          <Route element={<PrivateRoute />}>
-            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="/about" element={<AboutPage />} />
-            <Route path="/products/:categoryName" element={<ProductsPage />} />
+            <Route path="/products/:categoryName" element={<Product/>} />
             <Route path="/categories" element={<CategoryList />} />
-          </Route>
+            <Route path="/login" element={<Signup_login />} />
+            <Route path="/signup" element={<Signup_login />} />
         </Routes>
       </main>
     </Router>
