@@ -4,22 +4,26 @@ import "./products.css";
 import { LuBone } from "react-icons/lu";
 import { useParams } from "react-router-dom";
 import { TiArrowSortedDown } from "react-icons/ti";
+import { IoMdArrowDropup } from "react-icons/io"; // Updated icon for toggling
+
 const ProductsPage = () => {
   const { categoryName } = useParams();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [open, setOpen] = useState(null); // For toggling the filter sections
+
+  const toggle = (index) => {
+    setOpen(open === index ? null : index);
+  };
 
   useEffect(() => {
-    console.log("Category Name:", categoryName);
     const fetchProducts = async () => {
       try {
-        // Make sure to use the correct query parameter name
         const response = await axios.get(`http://localhost:2151/api/products`, {
           params: { categoryNames: categoryName },
         });
         setProducts(response.data);
-        setLoading(false);
       } catch (err) {
         setError("Failed to load products. Please try again later.");
       } finally {
@@ -37,21 +41,84 @@ const ProductsPage = () => {
     <section className="products-page">
       <div className="product-aside">
         <div className="aside-content">
-          <div className="aside-category">
-            <p>Category</p><TiArrowSortedDown />
+          <div className="aside-category" onClick={() => toggle(1)}>
+            <p>Category</p> {open === 1 ? <IoMdArrowDropup /> : <TiArrowSortedDown />}
           </div>
-          <div className="aside-category">
-            <p>Food Type</p><TiArrowSortedDown />
+          {open === 1 && (
+            <div className="aside-category-hidden product-show">
+              <div className="hidden-radio-container">
+                <input type="radio" name="category" />
+                <label>Food</label>
+              </div>
+              <div className="hidden-radio-container">
+                <input type="radio" name="category" />
+                <label>Accessories</label>
+              </div>
+              <div className="hidden-radio-container">
+                <input type="radio" name="category" />
+                <label>Toys</label>
+              </div>
+            </div>
+          )}
+
+          <div className="aside-category" onClick={() => toggle(2)}>
+            <p>Food Type</p> {open === 2 ? <IoMdArrowDropup /> : <TiArrowSortedDown />}
           </div>
-          <div className="aside-category">
-            <p>Price</p><TiArrowSortedDown />
+          {open === 2 && (
+            <div className="aside-category-hidden product-show">
+              <div className="hidden-radio-container">
+                <input type="radio" name="food-type" />
+                <label>Dry</label>
+              </div>
+              <div className="hidden-radio-container">
+                <input type="radio" name="food-type" />
+                <label>Wet</label>
+              </div>
+            </div>
+          )}
+
+          <div className="aside-category" onClick={() => toggle(3)}>
+            <p>Price</p> {open === 3 ? <IoMdArrowDropup /> : <TiArrowSortedDown />}
           </div>
-          <div className="aside-category brand-border">
-            <p>Brand</p><TiArrowSortedDown />
+          {open === 3 && (
+            <div className="aside-category-hidden product-show">
+              <div className="hidden-radio-container">
+                <input type="radio" name="price" />
+                <label className="label">Under $50</label>
+              </div>
+              <div className="hidden-radio-container">
+                <input type="radio" name="price" />
+                <label className="label">$50 - $100</label>
+              </div>
+              <div className="hidden-radio-container">
+                <input type="radio" name="price" />
+                <label className="label">Over $100</label>
+              </div>
+            </div>
+          )}
+
+          <div className="aside-category" onClick={() => toggle(4)}>
+            <p>Brand</p> {open === 4 ? <IoMdArrowDropup /> : <TiArrowSortedDown />}
           </div>
+          {open === 4 && (
+            <div className="aside-category-hidden product-show">
+              <div className="hidden-radio-container">
+                <input type="radio" name="brand" />
+                <label>Brand A</label>
+              </div>
+              <div className="hidden-radio-container">
+                <input type="radio" name="brand" />
+                <label>Brand B</label>
+              </div>
+              <div className="hidden-radio-container">
+                <input type="radio" name="brand" />
+                <label>Brand C</label>
+              </div>
+            </div>
+          )}
         </div>
       </div>
-      {/* <h1>Products</h1> */}
+
       <div className="products">
         {products.length > 0 ? (
           products.map((product) => (

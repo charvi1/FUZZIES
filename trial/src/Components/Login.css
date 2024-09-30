@@ -1,16 +1,28 @@
+/* Importing Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alef:wght@400;700&family=League+Spartan:wght@100..900&display=swap');
 
+/* Container Login Styles */
 .container-login {
+    /* Choose one of the background styles below */
+    /* Option A: Black Background */
+    /* background-color: black; */
+
+    /* Option B: Soft Cream Background */
     background: rgba(255, 247, 230, 0.9);
+
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); /* Lighter shadow for a softer look */
     text-align: center;
-    width: 300px;
+    width: 25%;
     z-index: 1;
     position: relative;
 }
 
-
+/* Background Image Overlay */
 .container-login::before {
     content: '';
     position: fixed;
@@ -23,12 +35,14 @@
     z-index: -1; 
 }
 
-
+/* Heading Styles */
 .login-h1 {
     margin-bottom: 20px;
     color: #8b5e34;
+    font-family: 'Quattrocento', serif;
 }
 
+/* Form Styles */
 .login-form {
     display: flex;
     flex-direction: column;
@@ -44,6 +58,7 @@
     outline: none;
 }
 
+/* Submit Button Styles */
 .sub {
     padding: 10px;
     background-color: #8b5e34;
@@ -53,22 +68,28 @@
     cursor: pointer;
     transition: background 0.3s ease;
     font-size: 15px;
+    font-family: 'League Spartan', sans-serif;
+    text-transform: uppercase;
 }
 
 .sub:hover {
     background-color: #704c28;
 }
 
+/* Additional Text Styles */
 .login-h3 {
     margin-top: 15px;
     color: #6b4c2a;
+    font-family: 'Courier Prime', monospace;
 }
 
+/* Anchor Link Styles */
 .login-anchor {
     color: #8b5e34;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
+    font-family: 'Courier Prime', monospace;
 }
 
 .login-anchor:hover {

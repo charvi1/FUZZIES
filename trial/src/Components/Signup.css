@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alef:wght@400;700&family=League+Spartan:wght@100..900&display=swap');
 
 .signup-container {
     background: rgba(255, 247, 230, 0.9);
@@ -5,11 +9,10 @@
     border-radius: 10px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 300px;
+    width: 25%;
     z-index: 1;
     position: relative; 
 }
-
 
 .signup-container::before {
     content: '';
@@ -26,6 +29,7 @@
 .signup-h1 {
     margin-bottom: 20px;
     color: #8b5e34;
+    font-family: Quattrocento;
 }
 
 .signup-form {
@@ -52,6 +56,8 @@
     cursor: pointer;
     transition: background 0.3s ease;
     font-size: 15px;
+    font-family: "League Spartan", system-ui;
+    text-transform: uppercase;
 }
 
 .sub-signup:hover {
@@ -65,6 +71,7 @@
     transition: color 0.3s ease;
     display: inline-block;
     margin-top: 20px;
+    font-family: 'Courier Prime', monospace;
 }
 
 .signup-anchor:hover {

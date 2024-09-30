@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import './ReviewCarousel.css'; // Create a separate CSS file for styling
+import './ReviewCarousel.css'; // Importing the CSS file for carousel styling
 
 const reviews = [
   {
     name: 'Jane Doe',
-    content: 'The products are amazing! It exceeded my expectations and I couldn\'t be happier'
+    content: 'This product is amazing! It exceeded my expectations and I couldn\'t be happier'
   },
   {
     name: 'John Smith',
