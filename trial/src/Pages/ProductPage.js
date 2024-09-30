@@ -4,7 +4,7 @@ import "./products.css";
 import { LuBone } from "react-icons/lu";
 import { useParams } from "react-router-dom";
 import { TiArrowSortedDown } from "react-icons/ti";
-import { IoMdArrowDropup } from "react-icons/io";
+import { IoMdArrowDropup } from "react-icons/io"; // Updated icon for toggling
 
 const ProductsPage = () => {
   const { categoryName } = useParams();
@@ -14,22 +14,16 @@ const ProductsPage = () => {
   const [open, setOpen] = useState(null); // For toggling the filter sections
 
   const toggle = (index) => {
-    if (index === open) {
-      setOpen(null);
-    } else {
-      setOpen(index);
-    }
+    setOpen(open === index ? null : index);
   };
 
   useEffect(() => {
-    console.log("Category Name:", categoryName);
     const fetchProducts = async () => {
       try {
         const response = await axios.get(`http://localhost:2151/api/products`, {
           params: { categoryNames: categoryName },
         });
         setProducts(response.data);
-        setLoading(false);
       } catch (err) {
         setError("Failed to load products. Please try again later.");
       } finally {
@@ -68,7 +62,7 @@ const ProductsPage = () => {
           )}
 
           <div className="aside-category" onClick={() => toggle(2)}>
-          <p>Food Type</p> {open === 2 ? <IoMdArrowDropup /> : <TiArrowSortedDown />}
+            <p>Food Type</p> {open === 2 ? <IoMdArrowDropup /> : <TiArrowSortedDown />}
           </div>
           {open === 2 && (
             <div className="aside-category-hidden product-show">
@@ -84,7 +78,7 @@ const ProductsPage = () => {
           )}
 
           <div className="aside-category" onClick={() => toggle(3)}>
-          <p>Price</p> {open === 3 ? <IoMdArrowDropup /> : <TiArrowSortedDown />}
+            <p>Price</p> {open === 3 ? <IoMdArrowDropup /> : <TiArrowSortedDown />}
           </div>
           {open === 3 && (
             <div className="aside-category-hidden product-show">
@@ -104,7 +98,7 @@ const ProductsPage = () => {
           )}
 
           <div className="aside-category" onClick={() => toggle(4)}>
-          <p>Brand</p> {open === 4 ? <IoMdArrowDropup /> : <TiArrowSortedDown />}
+            <p>Brand</p> {open === 4 ? <IoMdArrowDropup /> : <TiArrowSortedDown />}
           </div>
           {open === 4 && (
             <div className="aside-category-hidden product-show">

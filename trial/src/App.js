@@ -14,14 +14,14 @@ function App() {
     <Router>
       <main>
         <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/products/:categoryName" element={<Product/>} />
-            <Route path="/categories" element={<CategoryList />} />
-            <Route path="/login" element={<Signup_login />} />
-            <Route path="/signup" element={<Signup_login />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/track" element={<Track />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/products/:categoryName" element={<Product />} />
+          <Route path="/categories" element={<CategoryList />} />
+          <Route path="/login" element={<Signup_login />} />
+          <Route path="/signup" element={<Signup_login />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/track" element={<Track />} />
         </Routes>
       </main>
     </Router>

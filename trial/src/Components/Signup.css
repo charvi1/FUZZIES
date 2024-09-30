@@ -1,8 +1,8 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Alef:wght@400;700&family=League+Spartan:wght@100..900&display=swap');
+
 .signup-container {
     background: rgba(255, 247, 230, 0.9);
     padding: 30px;
@@ -13,7 +13,6 @@
     z-index: 1;
     position: relative; 
 }
-
 
 .signup-container::before {
     content: '';
@@ -66,12 +65,15 @@
 }
 
 .signup-anchor {
-    color: rgb(100, 100, 179);
+    color: #8b5e34;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
     display: inline-block;
     margin-top: 20px;
-    font-family: Courier prime;
+    font-family: 'Courier Prime', monospace;
 }
 
+.signup-anchor:hover {
+    color: #704c28;
+}

@@ -15,4 +15,4 @@ const AboutSection2 = () => {
   );
 };
 
-export default AboutSection2;
+export default AboutSection2;
