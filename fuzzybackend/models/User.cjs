@@ -1,6 +1,13 @@
-// models/User.js
+
+// // Hash password before saving the user
+// UserSchema.pre('save', async function(next) {
+//     if (!this.isModified('password')) return next();
+//     const salt = await bcrypt.genSalt(10);
+//     this.password = await bcrypt.hash(this.password, salt);
+//     next();
+// });
+
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
 
 const UserSchema = new mongoose.Schema({
     name: { type: String, required: true },
@@ -8,12 +15,7 @@ const UserSchema = new mongoose.Schema({
     password: { type: String, required: true },
 });
 
-// Hash password before saving the user
-UserSchema.pre('save', async function(next) {
-    if (!this.isModified('password')) return next();
-    const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
-    next();
-});
+// Remove the password hashing logic
+// Comment out or delete the pre-save hook
 
 module.exports = mongoose.model('User', UserSchema);

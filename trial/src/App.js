@@ -1,13 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './Pages/home';
+import Home from './Pages/home'; // or './Pages/Home' depending on the correct casing
 import AboutPage from './Pages/about';
 import Signup_login from './Pages/Signup_login';
 import Track from './Pages/Track';
 import CategoryList from './Pages/CategoryList';
 import Cart from './Pages/Cart';
 import './App.css'; // Global styles
-import Product from './Pages/Product';
 
 function App() {
   return (
