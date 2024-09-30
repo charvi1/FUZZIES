@@ -139,6 +139,26 @@ hr{
     font-family: Quattrocento;
     /* color: #7C5F4E; */
 }
+.logout-button {
+    height: 40px; /* Match height of other buttons */
+    padding: 5px; /* Match padding */
+    border-radius: 5px; /* Match border radius */
+    border: none; /* No border */
+    background-color: #CAC0B5; /* Match background color */
+    color: black; /* Text color */
+    font-weight: 600; /* Font weight */
+    font-size: 14px; /* Font size */
+    cursor: pointer; /* Pointer cursor */
+    display: flex; /* Flex for icon and text alignment */
+    align-items: center; /* Center items vertically */
+    transition: all ease 0.5s; /* Smooth transition for hover effects */
+}
+
+/* Optional: Add hover effect */
+.logout-button:hover {
+    background-color: #CAC0B5; /* Slightly darker shade on hover */
+}
+
 
 
 .items{
@@ -455,4 +475,6 @@ footer{
   .product-footer-h2{
     margin-top: 25px;
   }
+
+
 

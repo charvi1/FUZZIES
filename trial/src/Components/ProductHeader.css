@@ -74,3 +74,33 @@
     transition: all ease 0.5s;
     border-bottom: 2px solid #553326;
 }
+@media (max-width: 768px) {
+    .product-header {
+        height: auto; /* Allow height to adjust */
+        padding: 10px 0; /* Add some padding */
+    }
+
+    .product-nav .product-ul {
+        flex-direction: column; /* Stack items vertically */
+        align-items: flex-start; /* Align items to the start */
+    }
+
+    .search-bar {
+        width: 100%; /* Full width on smaller screens */
+        margin-bottom: 10px; /* Add some spacing below */
+    }
+}
+
+@media (max-width: 480px) {
+    .product-nav .product-ul {
+        font-size: 14px; /* Smaller font size */
+    }
+
+    .search-bar {
+        height: 35px; /* Adjust height for smaller screens */
+    }
+
+    .product-nav a {
+        font-size: 14px; /* Smaller font size for links */
+    }
+}

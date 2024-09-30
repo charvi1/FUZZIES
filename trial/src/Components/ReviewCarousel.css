@@ -113,3 +113,46 @@
 .right-button {
     right: 7px;
 }
+@media (max-width: 768px) {
+    .review-card {
+        flex: 0 0 45%; /* Adjust card width on medium screens */
+        margin-right: 20px; /* Reduce margin for smaller screens */
+        margin-left: 10px; /* Reduce margin for smaller screens */
+        height: auto; /* Allow height to adjust */
+    }
+    
+    .carousel-container {
+        height: 60vh; /* Reduce height on medium screens */
+    }
+
+    .carousel-button {
+        padding: 7px 12px; /* Adjust button size */
+        font-size: 14px; /* Adjust button font size */
+    }
+}
+
+@media (max-width: 480px) {
+    .review-card {
+        flex: 0 0 90%; /* Full width for cards on small screens */
+        margin-right: 0; /* Remove right margin */
+        margin-left: 0; /* Remove left margin */
+        height: auto; /* Allow height to adjust */
+    }
+    
+    .carousel-container {
+        height: 50vh; /* Further reduce height on small screens */
+    }
+
+    .review-name {
+        font-size: 20px; /* Smaller font size for names */
+    }
+
+    .paragraph-review {
+        font-size: 12px; /* Smaller font size for reviews */
+    }
+
+    .carousel-button {
+        padding: 5px 10px; /* Further adjust button size */
+        font-size: 12px; /* Further adjust button font size */
+    }
+}
