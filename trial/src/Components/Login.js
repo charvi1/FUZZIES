@@ -30,10 +30,11 @@ const Login = () => {
   };
 
   return (
-    <div className="container">
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="container-login">
+      <h1 className='login-h1'>Login</h1>
+      <form className='login-form' onSubmit={handleSubmit}>
         <input
+        className='login-input'
           placeholder="Email"
           name="email"
           type="email"
@@ -42,6 +43,7 @@ const Login = () => {
           required
         />
         <input
+          className='login-input'
           placeholder="Password"
           name="password"
           type="password"
@@ -51,8 +53,8 @@ const Login = () => {
         />
         <input className="sub" type="submit" value="Login" />
         {error && <div className="error">{error}</div>}
-        <h3>Don’t have an account?</h3>
-        <a href="/signup">Create a new account</a>
+        <h3 className='login-h3'>Don’t have an account?</h3>
+        <a  className='login-anchor' href="/signup">Create a new account</a>
       </form>
     </div>
   );
