@@ -150,20 +150,3 @@
 .bone-icon {
     margin-left: 5px;
 }
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .product-aside {
-        width: 100%;
-        height: auto; /* Remove fixed height on smaller screens */
-        padding: 5%; /* Adjust padding */
-    }
-
-    .products {
-        width: 100%; /* Full width on small screens */
-    }
-
-    .product-card {
-        width: 45%; /* Two cards per row */
-    }
-}

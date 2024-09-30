@@ -77,3 +77,30 @@
 .signup-anchor:hover {
     color: #704c28;
 }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .signup-container {
+        width: 80%; /* Wider on medium screens */
+        padding: 20px; /* Adjust padding */
+    }
+}
+
+@media (max-width: 480px) {
+    .signup-container {
+        width: 90%; /* Full width on small screens */
+        padding: 15px; /* Less padding */
+    }
+
+    .signup-h1 {
+        font-size: 24px; /* Slightly smaller heading */
+    }
+
+    .input-signup {
+        font-size: 12px; /* Smaller font size */
+    }
+
+    .sub-signup {
+        font-size: 14px; /* Smaller button font size */
+    }
+}

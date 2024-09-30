@@ -85,3 +85,42 @@
     font-family: Courier prime ;
     font-size: 16.3px;
 }
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .trackPage-div {
+        width: 90%; /* Full width on smaller screens */
+        flex-direction: column; /* Stack elements vertically */
+    }
+
+    .trackdiv-1 {
+        width: 100%; /* Full width for division 1 */
+        margin-bottom: 10px; /* Spacing below division 1 */
+    }
+
+    .trackdiv-2 {
+        width: 100%; /* Full width for division 2 */
+        padding: 5%; /* Less padding on smaller screens */
+    }
+
+    .trackdiv-2 button {
+        width: 70%; /* Adjust button width for better fit */
+    }
+
+    .trackdiv-1 img {
+        width: 80%; /* Adjust image size */
+    }
+}
+
+@media (max-width: 480px) {
+    .trackdiv-2 input {
+        font-size: 14px; /* Smaller font size */
+    }
+
+    .trackdiv-2 button {
+        font-size: 15px; /* Smaller button font size */
+    }
+
+    .trackdiv-1 h2 {
+        font-size: 18px; /* Adjust heading size */
+    }
+}

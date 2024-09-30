@@ -5,7 +5,7 @@ import ProductFooter from '../Components/ProductFooter';
 const Product = () => {
     return (
       <main>
-        <ProductHeader />
+        {/* <ProductHeader /> */}
         <ProductsPage/>
         <ProductFooter/>
       </main>
