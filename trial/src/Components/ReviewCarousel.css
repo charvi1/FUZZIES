@@ -2,13 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Alef:wght@400;700&family=League+Spartan:wght@100..900&display=swap');
-/* body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: white;
-} */
 
+/* Carousel Container */
 .carousel-container {
     display: flex;
     align-items: center;
@@ -24,16 +19,17 @@
     margin-top: 40px;
 }
 
+/* Review Section */
 .review-section {
     display: flex;
     transition: transform 0.5s ease-in-out;
     will-change: transform;
     padding-right: 6%;
-    /* align-items: center; */
     width: 97%;
     justify-content: space-around;
 }
 
+/* Review Cards */
 .review-card {
     flex: 0 0 32%;
     box-sizing: border-box;
@@ -42,8 +38,6 @@
     padding: 20px;
     background-color: #CAC0B5;
     border-radius: 10px;
-    /* border-top-right-radius: 30px; */
-    /* border-bottom-right-radius: 30px; */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
     height: 200px;
@@ -76,24 +70,25 @@
     background-repeat: no-repeat;
     z-index: -1;
 }
+
 .review-card:last-child {
     margin-right: 0;
 }
 
-
-.review-name{
+/* Review Text */
+.review-name {
     font-size: 25px;
     font-family: Quattrocento;
     font-weight: 700;
     color: #4e372a;
 }
 
-.paragraph-review{
-    font-family: Courier prime;
+.paragraph-review {
+    font-family: 'Courier Prime', sans-serif;
     font-size: 14px;
 }
 
-
+/* Carousel Buttons */
 .carousel-button {
     border: none;
     color: white;
@@ -110,6 +105,7 @@
     z-index: 10;
     background-color: #21211f;
 }
+
 .left-button {
     left: 10px;
 }
@@ -117,4 +113,3 @@
 .right-button {
     right: 7px;
 }
-

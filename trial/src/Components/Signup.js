@@ -11,6 +11,7 @@ const SignUp = () => {
   });
   const [error, setError] = useState(null);
   const navigate = useNavigate(); // Initialize navigate
+  
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
@@ -21,10 +22,9 @@ const SignUp = () => {
     try {
       const response = await axios.post('http://localhost:2151/api/auth/signup', formData);
       console.log('Signup successful:', response.data);
-      navigate('/login');
-      // Redirect or show a success message
+      navigate('/login'); // Redirect to login page after successful signup
     } catch (err) {
-      setError('Signup failed. Please try again.');
+      setError('Signup failed. Please try again.'); // Show error message if signup fails
     }
   };
 
@@ -32,7 +32,8 @@ const SignUp = () => {
     <div className="signup-container">
       <h1 className='signup-h1'>Sign Up</h1>
       <form className='signup-form' onSubmit={handleSubmit}>
-        <input  className='input-signup'
+        <input  
+          className='input-signup'
           placeholder="Name"
           name="name"
           type="text"
@@ -40,7 +41,8 @@ const SignUp = () => {
           onChange={handleChange}
           required
         />
-        <input className='input-signup'
+        <input 
+          className='input-signup'
           placeholder="Email"
           name="email"
           type="email"
@@ -48,7 +50,8 @@ const SignUp = () => {
           onChange={handleChange}
           required
         />
-        <input className='input-signup'
+        <input 
+          className='input-signup'
           placeholder="Password"
           name="password"
           type="password"
@@ -56,10 +59,14 @@ const SignUp = () => {
           onChange={handleChange}
           required
         />
-        <input className="sub-signup" type="submit" value="Sign Up" />
-        {error && <p>{error}</p>}
+        <input 
+          className="sub-signup" 
+          type="submit" 
+          value="Sign Up" 
+        />
+        {error && <p>{error}</p>} {/* Display error if signup fails */}
       </form>
-      <a className='signup-anchor' href="/">Go back to login page</a>
+      <a className='signup-anchor' href="/login">Go back to login page</a> {/* Link to login */}
     </div>
   );
 };

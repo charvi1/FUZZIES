@@ -7,7 +7,7 @@ import { FaLinkedinIn } from "react-icons/fa";
 const Footer = () => {
   return (
     <footer>
-      <img className="footer-top" src="footer.png" alt="Footer" />
+      <img className="footer-top  footer-cartPage" src="footer.png" alt="Footer" />
       <div className="footer-content">
         <div className="footer">
           <h2 className='footer-h2'>FUZZIES</h2>
