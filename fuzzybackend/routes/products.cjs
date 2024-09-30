@@ -96,7 +96,7 @@ router.post('/create', async (req, res) => {
 // Delete a Product
 router.delete('/:id', async (req, res) => {
     try {
-        const deletedProduct = await Product.findByIdAndRemove(req.params.id);
+        const deletedProduct = await Product.findOneAndDelete({_id:req.params.id});
         
         if (!deletedProduct) {
             return res.status(404).json({ success: false, message: 'Product not found' });

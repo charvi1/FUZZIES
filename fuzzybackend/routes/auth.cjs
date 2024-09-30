@@ -1,5 +1,4 @@
 const express = require('express');
-const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 const User = require('../models/User.cjs'); // Update based on your actual path
@@ -28,11 +27,11 @@ router.post(
                 return res.status(400).json({ message: 'User already exists' });
             }
 
-            // Create a new user
+            // Create a new user (without hashing password)
             user = new User({
                 name,
                 email,
-                password: await bcrypt.hash(password, 10) // Hash the password
+                password // Store password as plain text (not recommended for production)
             });
 
             await user.save();
@@ -68,13 +67,21 @@ router.post(
             // Check if user exists
             const user = await User.findOne({ email });
             if (!user) {
-                return res.status(400).json({ message: 'Invalid credentials' });
+                return res.status(400).json({ message: 'Invalid credentials (email not found)' });
             }
 
-            // Check if password matches
-            const isMatch = await bcrypt.compare(password, user.password);
+            // Log for debugging
+            console.log('Submitted Password:', password);
+            console.log('Stored Password in DB:', user.password);
+
+            // Compare passwords directly (without hashing)
+            //const isMatch = password === user.password;
+            const isMatch = password.trim() === user.password.trim();
+            // Debugging check
+            console.log('Password Match:', isMatch);
+
             if (!isMatch) {
-                return res.status(400).json({ message: 'Invalid credentials' });
+                return res.status(400).json({ message: 'Invalid credentials (password mismatch)' });
             }
 
             // Create JWT token
