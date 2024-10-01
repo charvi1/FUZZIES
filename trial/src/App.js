@@ -58,17 +58,14 @@ import Cart from './Pages/Cart';
 import Product from './Pages/Product';
 import AdminDashboard from './Pages/AdminDashboard';
 import './App.css'; // Global styles
-
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [username, setUsername] = useState('');
     const [isAdmin, setIsAdmin] = useState(false);
 
     useEffect(() => {
         const storedUser = JSON.parse(localStorage.getItem('user')); // Check local storage for user
         if (storedUser) {
             setIsAuthenticated(true);
-            setUsername(storedUser.name); // Use 'name' instead of 'email'
             setIsAdmin(
                 storedUser.email === 'xoxo@gmail.com' && storedUser.password === '12345678'
             );
@@ -77,7 +74,6 @@ function App() {
 
     const handleLogin = (user) => {
         setIsAuthenticated(true);
-        setUsername(user.name); // Use 'name' instead of 'email'
         localStorage.setItem('user', JSON.stringify(user));
 
         // Check if user is admin
@@ -88,10 +84,8 @@ function App() {
 
     const handleLogout = () => {
         setIsAuthenticated(false);
-        setUsername('');
         setIsAdmin(false);
         localStorage.removeItem('user'); // Remove user details from local storage
-        // Note: The logout message and navigation will be handled in Header.js
     };
 
     return (
@@ -99,8 +93,8 @@ function App() {
             {isAuthenticated && (
                 <Header
                     isAuthenticated={isAuthenticated}
-                    username={username}
                     onLogout={handleLogout}
+                    isAdmin={isAdmin} // Pass isAdmin prop
                 />
             )}
             <main>
@@ -151,13 +145,7 @@ function App() {
                     />
                     <Route
                         path="/admin"
-                        element={
-                            isAuthenticated && isAdmin ? (
-                                <AdminDashboard />
-                            ) : (
-                                <Navigate to="/" />
-                            )
-                        }
+                        element={isAuthenticated && isAdmin ? <AdminDashboard /> : <Navigate to="/" />}
                     />
                     {/* Catch-all route to redirect unknown paths to home */}
                     <Route path="*" element={<Navigate to="/" />} />
@@ -168,5 +156,3 @@ function App() {
 }
 
 export default App;
-
-                      

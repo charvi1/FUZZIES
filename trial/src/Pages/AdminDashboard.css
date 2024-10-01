@@ -51,7 +51,7 @@ input:focus {
 
 .submit-button {
     padding: 10px;
-    background-color: #007bff;
+    background-color: burlywood;
     color: white;
     border: none;
     border-radius: 4px;
@@ -60,7 +60,7 @@ input:focus {
 }
 
 .submit-button:hover {
-    background-color: #0056b3;
+    background-color: burlywood;
 }
 
 .product-list {
@@ -83,6 +83,7 @@ input:focus {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    margin-left: 10px; 
 }
 
 .edit-button {

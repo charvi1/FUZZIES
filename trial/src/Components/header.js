@@ -1,10 +1,9 @@
-// src/Components/Header.js
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaSearch, FaLocationArrow, FaUserAlt, FaShoppingCart } from "react-icons/fa";
 import '../App.css'; // Ensure the path is correct
 
-const Header = ({ isAuthenticated, username, onLogout }) => {
+const Header = ({ isAuthenticated, onLogout, isAdmin }) => {
     const navigate = useNavigate();
 
     const handleLogoutClick = () => {
@@ -29,15 +28,15 @@ const Header = ({ isAuthenticated, username, onLogout }) => {
                     </div>
                     <li><Link to="/track"><FaLocationArrow size={16} className='header-icons'/>TRACK</Link></li>
                     <li>
-                        {/* Logout Button */}
                         <button onClick={handleLogoutClick} className="logout-button">
                             <FaUserAlt size={16} className='header-icons'/>LOGOUT
                         </button>
                     </li>
                     <li><Link to="/cart"><FaShoppingCart size={17} className='header-icons'/>CART</Link></li>
-                    {/* Display Username */}
-                    {isAuthenticated && (
-                        <li><span className="username">{username}</span></li>
+
+                    {/* Conditionally render Admin tab if the user is an admin */}
+                    {isAdmin && (
+                        <li><Link to="/admin">ADMIN DASHBOARD</Link></li>
                     )}
                 </ul>
             </nav>
