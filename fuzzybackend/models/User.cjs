@@ -8,11 +8,15 @@
 // });
 
 const mongoose = require('mongoose');
+const {v4:uuidv4} = require('uuid');
 
 const UserSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    uuid:{ type: String,
+        default: uuidv4, // Automatically assign UUID when a new user is created
+        unique: true}
 });
 
 // Remove the password hashing logic
