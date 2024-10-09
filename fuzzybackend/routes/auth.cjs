@@ -37,10 +37,10 @@ router.post(
             await user.save();
 
             // Create JWT token
-            const payload = { user: { id: user.id } };
+            const payload = { user: { id: user.id ,uuid:user.uuid} };
             const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-            res.status(201).json({ token });
+            res.status(201).json({ token,uuid:user.uuid });
         } catch (err) {
             console.error(err.message);
             res.status(500).json({ message: 'Server error' });
@@ -85,10 +85,10 @@ router.post(
             }
 
             // Create JWT token
-            const payload = { user: { id: user.id } };
+            const payload = { user: { id: user.id ,uuid:user.uuid} };
             const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-            res.json({ token });
+            res.json({ token,uuid:user.uuid });
         } catch (err) {
             console.error(err.message);
             res.status(500).json({ message: 'Server error' });
