@@ -16,7 +16,22 @@ const UserSchema = new mongoose.Schema({
     password: { type: String, required: true },
     uuid:{ type: String,
         default: uuidv4, // Automatically assign UUID when a new user is created
-        unique: true}
+        unique: true},
+    cart:{
+        type:[
+            {
+                productId:{
+                    type:mongoose.Schema.Types.ObjectId,
+                    ref:'products'
+                },
+                quantity:{
+                    type:Number,
+                    default:1
+                }
+            }
+        ],
+        default:[]
+    }
 });
 
 // Remove the password hashing logic
