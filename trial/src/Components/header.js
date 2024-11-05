@@ -33,7 +33,7 @@ const Header = ({ isAuthenticated, onLogout, isAdmin }) => {
                         </button>
                     </li>
                     <li><Link to="/cart"><FaShoppingCart size={17} className='header-icons'/>CART</Link></li>
-                    <li><Link to="/">PROFILE</Link></li>
+            
                     {/* Conditionally render Admin tab if the user is an admin */}
                     {isAdmin && (
                         <li><Link to="/admin">ADMIN DASHBOARD</Link></li>
