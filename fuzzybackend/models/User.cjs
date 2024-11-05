@@ -22,7 +22,7 @@ const UserSchema = new mongoose.Schema({
             {
                 productId:{
                     type:mongoose.Schema.Types.ObjectId,
-                    ref:'products'
+                    ref:'Product'
                 },
                 quantity:{
                     type:Number,
