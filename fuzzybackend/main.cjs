@@ -16,11 +16,13 @@ const categoryRoutes = require('./routes/category.cjs');
 const productsRoutes=require('./routes/products.cjs');
 const authRoutes = require('./routes/auth.cjs');
 const WishlistRoutes=require('./routes/Wishlist.cjs');
+const cartRouter = require('./routes/Cart.cjs');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/category', categoryRoutes);
 app.use('/api/products',productsRoutes);
 app.use('/api/Wishlist', WishlistRoutes);
+app.use('/api/cart', cartRouter);
 
 // Database
 mongoose.connect(process.env.MONGODB_URI)
