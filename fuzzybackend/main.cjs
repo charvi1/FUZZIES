@@ -15,7 +15,8 @@ app.use(bodyParser.json());
 const categoryRoutes = require('./routes/category.cjs');
 const productsRoutes=require('./routes/products.cjs');
 const authRoutes = require('./routes/auth.cjs');
-const WishlistRoutes=require('./routes/Wishlist.cjs');
+
+// const WishlistRoutes=require('./routes/Wishlist.cjs');
 const cartRouter = require('./routes/Cart.cjs');
 
 app.use('/api/auth', authRoutes);
