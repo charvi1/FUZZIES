@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaSearch, FaLocationArrow, FaUserAlt, FaShoppingCart } from "react-icons/fa";
-import '../App.css'; // Ensure the path is correct
+import { FaSearch, FaUserAlt, FaShoppingCart } from "react-icons/fa";
+import '../App.css'; 
 
-const Header = ({ isAuthenticated, onLogout, isAdmin }) => {
+const Header = ({ isAuthenticated, isAdmin, onLogout }) => {
     const navigate = useNavigate();
 
     const handleLogoutClick = () => {
-        onLogout(); // Handle logout in App.js
-        alert('Logout successful'); // Display logout message
-        navigate('/login'); // Redirect to login page
+        onLogout();
+        alert('Logout successful');
+        navigate('/login');
     };
 
     return (
@@ -23,20 +23,29 @@ const Header = ({ isAuthenticated, onLogout, isAdmin }) => {
                     <li><Link to="/">HOME</Link></li>
                     <li><Link to="/about">WHO WE ARE</Link></li>
                     <div className="search-bar">
-                        <input placeholder="What are you looking for?" className="search-input" />
-                        <div className="search-icon"><FaSearch /></div>
+                        <input placeholder="What are you looking for?" className="search-input" aria-label="Search" />
+                        <div className="search-icon"><FaSearch aria-hidden="true" /></div>
                     </div>
-                    <li><Link to="/track"><FaLocationArrow size={16} className='header-icons'/>TRACK</Link></li>
-                    <li>
-                        <button onClick={handleLogoutClick} className="logout-button">
-                            <FaUserAlt size={16} className='header-icons'/>LOGOUT
-                        </button>
-                    </li>
-                    <li><Link to="/cart"><FaShoppingCart size={17} className='header-icons'/>CART</Link></li>
+                    
+                    {isAuthenticated && (
+                        <li><Link to="/profile"><FaUserAlt size={16} className='header-icons' aria-hidden="true" />PROFILE</Link></li>
+                    )}
 
-                    {/* Conditionally render Admin tab if the user is an admin */}
+                    <li>
+                        {isAuthenticated ? (
+                            <button onClick={handleLogoutClick} className="logout-button">
+                                <FaUserAlt size={16} className='header-icons' aria-hidden="true" />LOGOUT
+                            </button>
+                        ) : (
+                            <Link to="/login"><FaUserAlt size={16} className='header-icons' aria-hidden="true" />LOGIN</Link>
+                        )}
+                    </li>
+                    
+                    <li><Link to="/cart"><FaShoppingCart size={17} className='header-icons' aria-hidden="true" />CART</Link></li>
+
+                    {/* Show admin dashboard link only if isAdmin is true */}
                     {isAdmin && (
-                        <li><Link to="/admin">ADMIN DASHBOARD</Link></li>
+                        <li><Link to="/admin" className="admin-link">ADMIN DASHBOARD</Link></li>
                     )}
                 </ul>
             </nav>

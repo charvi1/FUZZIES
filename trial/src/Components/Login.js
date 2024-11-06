@@ -16,18 +16,23 @@ const Login = ({ onSuccessfulLogin }) => { // Accept onSuccessfulLogin as a prop
     try {
       const response = await axios.post('http://localhost:2151/api/auth/login', {
         email,
-        password
+        password,
       });
 
-      // Store token or handle successful login
+      // Destructure token, uuid, and isAdmin from response data
+      const { token, uuid, isAdmin } = response.data;
+
+      // Store token and user details in local storage
+      localStorage.setItem('token', token);
+      localStorage.setItem('userId', uuid);
+      localStorage.setItem('isAdmin', isAdmin);
       console.log('Login successful', response.data);
 
-      // Store user details in local storage (modify according to your response structure)
-      const user = { email, password }; // You might want to adjust this based on your backend response
-      localStorage.setItem('user', JSON.stringify(user)); // Save user data to local storage
+      // Notify parent component of successful login and pass user data
+      onSuccessfulLogin({ email, uuid, isAdmin });
 
-      onSuccessfulLogin(user); // Notify parent component of successful login
-      navigate('/'); // Redirect to the home page or any other route
+      // Redirect to the home page or any other route
+      navigate('/');
     } catch (err) {
       setError('Login failed. Please check your credentials and try again.');
     }

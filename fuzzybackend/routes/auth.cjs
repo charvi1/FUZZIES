@@ -37,10 +37,10 @@ router.post(
             await user.save();
 
             // Create JWT token
-            const payload = { user: { id: user.id ,uuid:user.uuid} };
+            const payload = { user: { id: user.id ,uuid:user.uuid,isAdmin: user.isAdmin } };
             const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-            res.status(201).json({ token,uuid:user.uuid });
+            res.status(201).json({ token,uuid:user.uuid , isAdmin: user.isAdmin});
         } catch (err) {
             console.error(err.message);
             res.status(500).json({ message: 'Server error' });
@@ -85,10 +85,10 @@ router.post(
             }
 
             // Create JWT token
-            const payload = { user: { id: user.id ,uuid:user.uuid} };
+            const payload = { user: { id: user.id ,uuid:user.uuid},isAdmin: user.isAdmin  };
             const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-            res.json({ token,uuid:user.uuid });
+            res.json({ token,uuid:user.uuid,isAdmin: user.isAdmin  });
         } catch (err) {
             console.error(err.message);
             res.status(500).json({ message: 'Server error' });
@@ -109,10 +109,31 @@ router.get('/me', verifyToken, async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 });
+// Update User Phone Number
+router.patch('/me', verifyToken, async (req, res) => {
+    const { phoneNumber } = req.body;
+
+    try {
+        const user = await User.findById(req.user.id);
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Update phone number
+        user.phoneNumber = phoneNumber;
+        await user.save();
+
+        res.json({ message: 'Phone number updated successfully' });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
 
 // Middleware to verify token
 function verifyToken(req, res, next) {
-    const token = req.header('Authorization');
+    const token =  req.headers.authorization?.split(' ')[1]; 
     if (!token) {
         return res.status(401).json({ message: 'No token, authorization denied' });
     }

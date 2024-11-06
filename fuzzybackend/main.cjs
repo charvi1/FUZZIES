@@ -15,12 +15,14 @@ app.use(bodyParser.json());
 const categoryRoutes = require('./routes/category.cjs');
 const productsRoutes=require('./routes/products.cjs');
 const authRoutes = require('./routes/auth.cjs');
-const WishlistRoutes=require('./routes/Wishlist.cjs');
+
+// const WishlistRoutes=require('./routes/Wishlist.cjs');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/category', categoryRoutes);
 app.use('/api/products',productsRoutes);
-app.use('/api/Wishlist', WishlistRoutes);
+
+// app.use('/api/Wishlist', WishlistRoutes);
 
 // Database
 mongoose.connect(process.env.MONGODB_URI)
