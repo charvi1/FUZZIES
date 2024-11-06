@@ -8,7 +8,7 @@ const getCart = async (req,res) => {
             return res.status(404).json({ success: false, message: "User not found" });
         }
         await user.populate('cart.productId');
-        res.status(200).json({success:false,cart:user.cart});
+        res.status(200).json({success:true,cart:user.cart});
     } catch(err){
         return res.status(500).json({
             success: false,

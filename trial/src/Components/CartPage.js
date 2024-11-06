@@ -17,9 +17,9 @@ const CartPage = () => {
     // Fetch user cart data
     const fetchUserCart = async (email) => {
         try {
-            const response = await axios.get(`http://localhost:2151/api/cart`, { email });
+            const response = await axios.post('http://localhost:2151/api/cart', { email });
             if (response.data.success) {
-                console.log(response.data.cart);
+                console.log(response.data);
                 setCart(response.data.cart);
             } else {
                 setError("Failed to fetch cart data.");
@@ -32,7 +32,6 @@ const CartPage = () => {
         }
     };
     
-
     // Trigger fetchUserCart on component mount
     useEffect(() => {
         if (email) {
@@ -54,7 +53,8 @@ const CartPage = () => {
                     <div className="checkout cart-items">
                         <h2 className="shopping-cart">Your Shopping Cart</h2>
                         {cart.map((item) => (
-                            <CartCard/>
+                            // Pass the item prop properly
+                            <CartCard key={item._id} item={item} />
                         ))}
                     </div>
                 ) : (

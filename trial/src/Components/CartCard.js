@@ -1,7 +1,10 @@
 import React from "react";
 
-const CartCard = ({ productData }) => {
-    const { productId, quantity } = productData;
+const CartCard = ({ item }) => {
+    // Extract the productId and quantity from the item object
+    const { productId, quantity } = item;
+
+    // Extract relevant details from the productId
     const { name, description, price, rating, images } = productId;
 
     return (
@@ -12,7 +15,7 @@ const CartCard = ({ productData }) => {
                 <p className="card-description">{description}</p>
                 <p className="card-price">Price: ${price.toFixed(2)}</p>
                 <p className="card-quantity">Quantity: {quantity}</p>
-                <p className="card-rating">Rating: {rating} / 5</p>
+                <p className="card-rating">Rating: {rating} / 5</p> 
             </div>
         </div>
     );

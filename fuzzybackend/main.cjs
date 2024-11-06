@@ -22,7 +22,7 @@ const cartRouter = require('./routes/Cart.cjs');
 app.use('/api/auth', authRoutes);
 app.use('/api/category', categoryRoutes);
 app.use('/api/products',productsRoutes);
-app.use('/api/Wishlist', WishlistRoutes);
+// app.use('/api/Wishlist', WishlistRoutes);
 app.use('/api/cart', cartRouter);
 
 // Database
