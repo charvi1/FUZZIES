@@ -5,14 +5,20 @@ import './ProfilePage.css';
 const ProfilePage = () => {
     const [user, setUser] = useState(null);
     const [error, setError] = useState('');
+    const [isEditing, setIsEditing] = useState(false);
+
+    const [name, setName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
-    const [isEditing, setIsEditing] = useState(false); // State to track editing mode
+    const [gender, setGender] = useState('');
+    const [dob, setDob] = useState('');
+    const [location, setLocation] = useState('');
+    const [alternatePhone, setAlternatePhone] = useState('');
+    const [hintName, setHintName] = useState('');
 
     useEffect(() => {
         const fetchUserProfile = async () => {
             try {
                 const token = localStorage.getItem('token');
-                
                 if (!token) {
                     setError('You must be logged in to view this page.');
                     return;
@@ -25,7 +31,13 @@ const ProfilePage = () => {
                 });
 
                 setUser(res.data);
-                setPhoneNumber(res.data.phoneNumber); // Load existing phone number
+                setName(res.data.name);
+                setPhoneNumber(res.data.phoneNumber);
+                setGender(res.data.gender || '');
+                setDob(res.data.dob || '');
+                setLocation(res.data.location || '');
+                setAlternatePhone(res.data.alternatePhone || '');
+                
             } catch (err) {
                 console.error('Error fetching profile:', err);
                 setError('Could not fetch user profile. Please try again later.');
@@ -35,30 +47,40 @@ const ProfilePage = () => {
         fetchUserProfile();
     }, []);
 
-    const handleSavePhoneNumber = async () => {
+    const handleSaveProfile = async () => {
         const token = localStorage.getItem('token');
 
         try {
-            const res = await axios.patch('http://localhost:2151/api/auth/me', { phoneNumber }, {
+            const updatedData = {
+                name,
+                phoneNumber,
+                gender,
+                dob,
+                location,
+                alternatePhone,
+                hintName,
+            };
+
+            const res = await axios.patch('http://localhost:2151/api/auth/me', updatedData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
 
-            setUser({ ...user, phoneNumber }); // Update user state with new phone number
-            setIsEditing(false); // Exit editing mode
+            setUser({ ...user, ...updatedData });
+            setIsEditing(false);
         } catch (err) {
-            console.error('Error saving phone number:', err);
-            setError('Could not save phone number. Please try again later.');
+            console.error('Error saving profile:', err);
+            setError('Could not save profile. Please try again later.');
         }
     };
 
     const handleEdit = () => {
-        setIsEditing(true); // Enter editing mode
+        setIsEditing(true);
     };
 
     if (error) {
-        return <div className="error-message">{error}</div>;
+        return <div className="profile-error-message">{error}</div>;
     }
 
     if (!user) {
@@ -67,21 +89,33 @@ const ProfilePage = () => {
 
     return (
         <div className="profile-container">
-            <h1>User Profile</h1>
+            <div className="profile-header">
+                <div
+                    className="profile-image"
+                    style={{
+                        backgroundImage: `url(${user.profileImage || 'https://via.placeholder.com/150'})`, // Fallback to placeholder
+                    }}
+                ></div>
+                <div className="profile-username">{user.name}</div>
+            </div>
             <div className="profile-details">
-                <p><strong>Name:</strong> {isEditing ? <input type="text" defaultValue={user.name} /> : user.name}</p>
-                <p><strong>Email:</strong> {user.email}</p> {/* Displaying email */}
-                <p>
-                    <strong>Phone Number:</strong> {isEditing ? <input type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} placeholder="Enter your phone number" /> : user.phoneNumber}
-                </p>
+                <p><strong>Full Name:</strong> {isEditing ? <input type="text" value={name} onChange={(e) => setName(e.target.value)} /> : user.name}</p>
+                <p><strong>Mobile Number:</strong> {isEditing ? <input type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} /> : user.phoneNumber}</p>
+                <p><strong>Email ID:</strong> {user.email}</p>
+                <p><strong>Gender:</strong> {isEditing ? <input type="text" value={gender} onChange={(e) => setGender(e.target.value)} /> : (user.gender || '- not added -')}</p>
+                <p><strong>Date of Birth:</strong> {isEditing ? <input type="text" value={dob} onChange={(e) => setDob(e.target.value)} /> : (user.dob || '- not added -')}</p>
+                <p><strong>Location:</strong> {isEditing ? <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} /> : (user.location || '- not added -')}</p>
+                <p><strong>Alternate Mobile:</strong> {isEditing ? <input type="text" value={alternatePhone} onChange={(e) => setAlternatePhone(e.target.value)} /> : (user.alternatePhone || '- not added -')}</p>
+                
+
                 {!isEditing ? (
                     <>
-                        <button className="edit-button" onClick={handleEdit}>Edit</button>
+                        <div className="edit-button-profile" onClick={handleEdit}>EDIT</div>
                     </>
                 ) : (
                     <>
-                        <button className="save-button" onClick={handleSavePhoneNumber}>Save</button>
-                        <button className="edit-button" onClick={() => setIsEditing(false)}>Cancel</button>
+                        <div className="profile-save-button" onClick={handleSaveProfile}>Save</div>
+                        <div className="profile-cancel-button" onClick={() => setIsEditing(false)}>Cancel</div>
                     </>
                 )}
             </div>

@@ -1,22 +1,83 @@
 .profile-container {
-    max-width: 600px;
+    max-width: 800px; /* Increase the container width for more space */
     margin: 20px auto;
-    padding: 20px;
+    padding: 30px;
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #f9f9f9;
 }
 
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px; /* Add space between the header and profile details */
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    margin-left: 42.5vh;
+    border-radius: 50%;
+    background-image: url('https://www.example.com/your-image.jpg');
+    background-color: #aa9b8b;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 15px;
+}
+
+
+
+.profile-username {
+    font-size: 24px;
+    font-weight: bold;
+}
+
 .profile-details {
-    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
 }
 
 .profile-details p {
     font-size: 16px;
 }
 
-.error-message {
+.profile-error-message {
     color: red;
     font-size: 18px;
     text-align: center;
+}
+
+
+.edit-button-profile {
+    background-color: #aa9b8b;
+    border: none;
+    font-weight:800;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.profile-save-button {
+    background-color: #b9b78a;
+    border: none;
+    font-weight:700;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.profile-cancel-button{
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: #aa9b8b;
+    border: none;
+    font-weight:800;
+    color: white;
 }

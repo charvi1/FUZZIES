@@ -115,7 +115,7 @@ const AdminDashboard = () => {
                 </button>
             </form>
 
-            <h2>Product List</h2>
+            <h2 style={{ paddingTop: '28px' }}>Product List</h2>
             <ul className="product-list">
                 {products.map((product) => (
                     <li key={product._id} className="product-item">
