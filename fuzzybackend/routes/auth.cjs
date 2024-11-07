@@ -110,8 +110,9 @@ router.get('/me', verifyToken, async (req, res) => {
     }
 });
 // Update User Phone Number
+// Update User Profile (multiple fields)
 router.patch('/me', verifyToken, async (req, res) => {
-    const { phoneNumber } = req.body;
+    const { name, phoneNumber, gender, dob, location, alternatePhone, hintName } = req.body;
 
     try {
         const user = await User.findById(req.user.id);
@@ -119,16 +120,23 @@ router.patch('/me', verifyToken, async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        // Update phone number
-        user.phoneNumber = phoneNumber;
+        // Update fields if they are provided
+        if (name) user.name = name;
+        if (phoneNumber) user.phoneNumber = phoneNumber;
+        if (gender) user.gender = gender;
+        if (dob) user.dob = dob;
+        if (location) user.location = location;
+        if (alternatePhone) user.alternatePhone = alternatePhone;
+
         await user.save();
 
-        res.json({ message: 'Phone number updated successfully' });
+        res.json({ message: 'Profile updated successfully', user });
     } catch (err) {
         console.error(err.message);
         res.status(500).json({ message: 'Server error' });
     }
 });
+
 
 
 // Middleware to verify token

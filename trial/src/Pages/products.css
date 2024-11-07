@@ -54,6 +54,7 @@
 
 .label {
     display: flex;
+    color: #ddd;
 }
 
 /* Container for the product grid */

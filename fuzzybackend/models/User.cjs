@@ -9,7 +9,11 @@ const UserSchema = new mongoose.Schema({
     uuid:{ type: String,
         default: uuidv4, // Automatically assign UUID when a new user is created
         unique: true},
-        phoneNumber: { type: String, default: '' },
+        phoneNumber: { type:String, default: '' },
+        gender: {type:String, default: ''},
+        dob:{type:String, default: ''},
+        location:{type:String, default: ''},
+        alternatePhone:{type:String, default: ''},
     cart:{
         type:[
             {
