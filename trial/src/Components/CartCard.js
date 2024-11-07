@@ -1,22 +1,22 @@
-import React from "react";
+// CartCard.jsx
+import React from 'react';
 
 const CartCard = ({ item }) => {
-    // Extract the productId and quantity from the item object
-    const { productId, quantity } = item;
+    if (!item || !item.productId) {
+        return <p>Product details are not available.</p>;
+    }
 
-    // Extract relevant details from the productId
+    const { productId, quantity } = item;
     const { name, description, price, rating, images } = productId;
 
     return (
-        <div className="horizontal-card">
-            <img src={images[0]} alt={name} className="card-image" />
-            <div className="card-content">
-                <h2 className="card-title">{name}</h2>
-                <p className="card-description">{description}</p>
-                <p className="card-price">Price: ${price.toFixed(2)}</p>
-                <p className="card-quantity">Quantity: {quantity}</p>
-                <p className="card-rating">Rating: {rating} / 5</p> 
-            </div>
+        <div className="cart-card">
+            <img src={images[0]} alt={name} />
+            <h3>{name}</h3>
+            <p>{description}</p>
+            <p>Quantity: {quantity}</p>
+            <p>Price: ${price}</p>
+            <p>Rating: {rating}</p>
         </div>
     );
 };

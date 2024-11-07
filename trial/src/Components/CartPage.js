@@ -19,8 +19,8 @@ const CartPage = () => {
         try {
             const response = await axios.post('http://localhost:2151/api/cart', { email });
             if (response.data.success) {
-                console.log(response.data);
-                setCart(response.data.cart);
+              console.log("Fetched Cart Data:", response.data.cart);
+                setCart(response.data.cart); // Update state with cart data
             } else {
                 setError("Failed to fetch cart data.");
             }
@@ -53,8 +53,7 @@ const CartPage = () => {
                     <div className="checkout cart-items">
                         <h2 className="shopping-cart">Your Shopping Cart</h2>
                         {cart.map((item) => (
-                            // Pass the item prop properly
-                            <CartCard key={item._id} item={item} />
+                            <CartCard key={item._id} item={item} /> // Pass item data to CartCard
                         ))}
                     </div>
                 ) : (

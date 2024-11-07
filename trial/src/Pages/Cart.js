@@ -7,7 +7,7 @@ const Cart = () => {
       <main>
         {/* <Header/> */}
         <CartPage/>
-        <Footer/>
+        {/* <Footer/> */}
       </main>
     );
   };
