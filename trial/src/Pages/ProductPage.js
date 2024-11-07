@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./products.css";
 import { LuBone } from "react-icons/lu";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate} from "react-router-dom";
 import { TiArrowSortedDown } from "react-icons/ti";
 import { IoMdArrowDropup } from "react-icons/io"; // Updated icon for toggling
 
 const ProductsPage = () => {
   const { categoryName } = useParams();
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -33,6 +34,30 @@ const ProductsPage = () => {
 
     fetchProducts();
   }, [categoryName]);
+//cart
+ const handleAddToCart = async (product) => {
+    try {
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (!user) {
+        alert("Please log in to add items to your cart.");
+        navigate("/login");
+        return;
+      }
+      const response = await axios.post("http://localhost:2151/api/cart/addToCart", {
+        email: user.email,
+        productId: product._id,
+      });
+
+      if (response.data.success) {
+        navigate("/cart");
+      } else {
+        alert("Failed to add item to cart. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error adding item to cart:", error);
+      alert("An error occurred. Please try again.");
+    }
+  };
 
   if (loading) return <div>Loading products...</div>;
   if (error) return <div>{error}</div>;
@@ -131,7 +156,7 @@ const ProductsPage = () => {
                   <p>Price: ${product.price.toFixed(2)}</p>
                   <p>Rating: {product.rating}</p>
                 </div>
-                <button className="product-cart-button">
+                <button className="product-cart-button"  onClick={() => handleAddToCart(product)}>
                   ADD TO CART
                   <LuBone className="bone-icon" size={18} />
                 </button>
