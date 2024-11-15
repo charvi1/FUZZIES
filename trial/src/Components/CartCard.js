@@ -1,5 +1,6 @@
 // CartCard.jsx
 import React from 'react';
+import './cartcard.css';
 
 const CartCard = ({ item }) => {
     if (!item || !item.productId) {

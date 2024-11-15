@@ -13,6 +13,7 @@ const ProductsPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [open, setOpen] = useState(null); // For toggling the filter sections
+  const [cart, setCart] = useState([]);
 
   const toggle = (index) => {
     setOpen(open === index ? null : index);
@@ -49,6 +50,7 @@ const ProductsPage = () => {
       });
 
       if (response.data.success) {
+        setCart(response.data.cart); 
         navigate("/cart");
       } else {
         alert("Failed to add item to cart. Please try again.");

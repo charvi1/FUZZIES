@@ -1,0 +1,53 @@
+/* cart.css */
+.cart-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 12px 0;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.cart-card:hover {
+    transform: scale(1.02);
+}
+
+/* Image Styling */
+.cart-card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-right: 16px;
+}
+
+/* Content Styling */
+.cart-card h3 {
+    font-size: 18px;
+    margin: 0 0 8px;
+    color: #333;
+}
+
+.cart-card p {
+    margin: 4px 0;
+    color: #555;
+    font-size: 14px;
+}
+
+/* Ensure content is aligned */
+.cart-card div {
+    flex-grow: 1;
+    margin-left: 16px;
+}
+
+/* Price and Quantity Styling */
+.cart-card p:nth-child(4), 
+.cart-card p:nth-child(5) {
+    font-weight: bold;
+    color: #000;
+    font-size: 16px;
+}
