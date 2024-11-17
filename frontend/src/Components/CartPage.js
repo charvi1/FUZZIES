@@ -15,29 +15,45 @@ const CartPage = () => {
     const email = user ? user.email : null;
 
     // Fetch user cart data
-    const fetchUserCart = async (email) => {
+    const fetchUserCart = async () => {
         try {
             const response = await axios.post('http://localhost:2151/api/cart', { email });
             if (response.data.success) {
-              console.log("Fetched Cart Data:", response.data.cart);
-                setCart(response.data.cart); // Update state with cart data
+                setCart(response.data.cart); // Update cart state with fetched data
             } else {
-                setError("Failed to fetch cart data.");
+                setError('Failed to fetch cart data.');
             }
         } catch (error) {
-            setError("Error fetching cart data.");
-            console.error("Error fetching cart:", error);
+            setError('Error fetching cart data.');
+            console.error('Error fetching cart:', error);
         } finally {
             setLoading(false);
         }
     };
-    
-    // Trigger fetchUserCart on component mount
+
+    // Remove item from cart
+    const removeFromCart = async (productId) => {
+        try {
+            const response = await axios.delete('http://localhost:2151/api/cart/removeFromCart', {
+                data: { email, productId }, // Pass email and productId in the request body
+            });
+            if (response.data.success) {
+                // Update the cart state by filtering out the removed item
+                setCart(cart.filter((item) => item.productId._id !== productId));
+            } else {
+                console.error('Failed to remove item from cart:', response.data.message);
+            }
+        } catch (error) {
+            console.error('Error removing item from cart:', error);
+        }
+    };
+
+    // Fetch user cart on component mount
     useEffect(() => {
         if (email) {
-            fetchUserCart(email);
+            fetchUserCart();
         } else {
-            setError("No user email found.");
+            setError('No user email found.');
             setLoading(false);
         }
     }, [email]);
@@ -47,20 +63,24 @@ const CartPage = () => {
 
     return (
         <main>
-            <div className='main-color'></div>
-            <div className='cartPage-container'>
+            <div className="main-color"></div>
+            <div className="cartPage-container">
                 {cart.length > 0 ? (
                     <div className="checkout cart-items">
                         <h2 className="shopping-cart">Your Shopping Cart</h2>
                         {cart.map((item) => (
-                            <CartCard key={item._id} item={item} /> // Pass item data to CartCard
+                            <CartCard
+                                key={item._id}
+                                item={item}
+                                removeFromCart={removeFromCart} // Pass the remove function as a prop
+                            />
                         ))}
                     </div>
                 ) : (
                     <div className="checkout empty-cart">
                         <h2 className="shopping-cart">Your Shopping Cart is Empty</h2>
                         <img src="cart-img.svg" alt="empty-cart" />
-                        <button className="button-cart-click" onClick={() => navigate("/")}>
+                        <button className="button-cart-click" onClick={() => navigate('/')}>
                             Continue Shopping
                         </button>
                     </div>
