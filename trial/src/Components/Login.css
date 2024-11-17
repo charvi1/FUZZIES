@@ -4,25 +4,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Alef:wght@400;700&family=League+Spartan:wght@100..900&display=swap');
 
-/* Container Login Styles */
+
 .container-login {
-    /* Choose one of the background styles below */
-    /* Option A: Black Background */
-    /* background-color: black; */
-
-    /* Option B: Soft Cream Background */
     background: rgba(255, 247, 230, 0.9);
-
-    padding: 30px;
+    padding: 2%;
     border-radius: 10px;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); /* Lighter shadow for a softer look */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 25%;
+    width: 30%;
     z-index: 1;
     position: relative;
 }
 
-/* Background Image Overlay */
+
 .container-login::before {
     content: '';
     position: fixed;
@@ -35,14 +29,14 @@
     z-index: -1; 
 }
 
-/* Heading Styles */
+
 .login-h1 {
     margin-bottom: 20px;
     color: #8b5e34;
     font-family: 'Quattrocento', serif;
 }
 
-/* Form Styles */
+
 .login-form {
     display: flex;
     flex-direction: column;
@@ -58,7 +52,6 @@
     outline: none;
 }
 
-/* Submit Button Styles */
 .sub {
     padding: 10px;
     background-color: #8b5e34;
@@ -76,14 +69,15 @@
     background-color: #704c28;
 }
 
-/* Additional Text Styles */
+
 .login-h3 {
     margin-top: 15px;
     color: #6b4c2a;
     font-family: 'Courier Prime', monospace;
+    font-size: 18px;
 }
 
-/* Anchor Link Styles */
+
 .login-anchor {
     color: #8b5e34;
     text-decoration: none;
@@ -95,3 +89,174 @@
 .login-anchor:hover {
     color: #704c28;
 }
+
+@media (max-width : 960px) {
+    .container-login{
+        width: 40%;
+    }
+    
+}
+
+
+@media (max-width : 675px) {
+    .container-login{
+        width: 50%;
+    }
+}
+
+
+@media (max-width : 525px) {
+    .container-login{
+        width: 60%;
+    }
+}
+
+
+@media (max-width : 450px) {
+    .container-login{
+        width: 73%;
+    }
+}
+
+
+@media (max-width : 350px) {
+    .container-login{
+        width: 85%;
+    }
+}
+
+
+@media (min-width : 1800px) {
+    .login-h1{
+        font-size: 40px;
+    }
+    .login-input{
+        font-size: 17px;
+    }
+
+    .container-login{
+        width: 25%;
+    }
+
+    .sub{
+        font-size: 18px;
+    }
+
+    .login-h3{
+        font-size: 20px;
+    }
+    .login-anchor{
+        font-size: 18px;
+    }
+}
+
+@media (min-width : 2050px) {
+    .login-h1{
+        font-size: 45px;
+    }
+    .login-input{
+        font-size: 19px;
+    }
+
+    .container-login{
+        width: 25%;
+    }
+
+    .sub{
+        font-size: 20px;
+    }
+
+    .login-h3{
+        font-size: 22px;
+    }
+    .login-anchor{
+        font-size: 20px;
+    }
+}
+
+@media (min-height : 750px) {
+    .login-h1{
+        font-size: 40px;
+    }
+    .login-input{
+        font-size: 16px;
+    }
+
+    .sub{
+        font-size: 18px;
+    }
+
+    .login-h3{
+        font-size: 22px;
+    }
+    .login-anchor{
+        font-size: 20px;
+    }
+}
+
+@media (min-height : 897px) {
+    .login-h1{
+        font-size: 53px;
+    }
+    .login-input{
+        font-size: 23px;
+        font-weight: 700;
+    }
+
+    .container-login{
+        width: 45%;
+        margin-top: 5%;
+    }
+
+    .login-input{
+        padding: 15px;
+    }
+
+    .sub{
+        font-size: 25px;
+        padding: 17px;
+    }
+
+    .login-h3{
+        font-size: 28px;
+    }
+    .login-anchor{
+        font-size: 25px;
+    }
+}
+
+@media (min-width : 400px) and (min-height : 900px) {
+    .container-login{
+        width: 80%;
+    }
+
+    .login-h1{
+        font-size: 40px;
+    }
+    .login-input{
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .login-input{
+        padding: 15px;
+    }
+
+    .sub{
+        font-size: 20px;
+        padding: 18px;
+    }
+
+    .login-h3{
+        font-size: 25px;
+    }
+    .login-anchor{
+        font-size: 25px;
+    }
+}
+
+
+
+
+
+
