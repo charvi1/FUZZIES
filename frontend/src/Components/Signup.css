@@ -30,6 +30,7 @@
     margin-bottom: 20px;
     color: #8b5e34;
     font-family: Quattrocento;
+    padding-top: 25%;
 }
 
 .signup-form {
@@ -78,29 +79,151 @@
     color: #704c28;
 }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .signup-container {
-        width: 80%; /* Wider on medium screens */
-        padding: 20px; /* Adjust padding */
+@media (max-width : 960px) {
+    .signup-container{
+        width: 40%;
+    }
+    
+}
+
+
+@media (max-width : 675px) {
+    .signup-container{
+        width: 50%;
     }
 }
 
-@media (max-width: 480px) {
-    .signup-container {
-        width: 90%; /* Full width on small screens */
-        padding: 15px; /* Less padding */
-    }
-
-    .signup-h1 {
-        font-size: 24px; /* Slightly smaller heading */
-    }
-
-    .input-signup {
-        font-size: 12px; /* Smaller font size */
-    }
-
-    .sub-signup {
-        font-size: 14px; /* Smaller button font size */
+@media (max-width : 450px) {
+    .signup-container{
+        width: 73%;
     }
 }
+
+
+@media (max-width : 350px) {
+    .signup-container{
+        width: 85%;
+    }
+}
+
+
+@media (min-width : 1800px) {
+    .signup-h1{
+        font-size: 40px;
+    }
+    .input-signup{
+        font-size: 17px;
+    }
+
+    .signup-container{
+        width: 25%;
+    }
+
+    .sub-signup{
+        font-size: 18px;
+    }
+
+    .signup-anchor{
+        font-size: 18px;
+    }
+}
+
+@media (min-width : 2050px) {
+    .signup-h1{
+        font-size: 45px;
+    }
+    .input-signup{
+        font-size: 19px;
+    }
+
+    .signup-container{
+        width: 25%;
+    }
+
+    .sub-signup{
+        font-size: 20px;
+    }
+
+    .signup-anchor{
+        font-size: 20px;
+    }
+}
+
+@media (min-height : 750px) {
+    .signup-h1{
+        font-size: 40px;
+    }
+    .input-signup{
+        font-size: 16px;
+    }
+
+    .sub-signup{
+        font-size: 18px;
+    }
+
+    
+    .signup-anchor{
+        font-size: 20px;
+    }
+}
+
+@media (min-height : 897px) {
+    .signup-h1{
+        font-size: 53px;
+    }
+    .input-signup{
+        font-size: 23px;
+        font-weight: 700;
+    }
+
+    .signup-container{
+        width: 45%;
+        margin-top: 5%;
+    }
+
+    .input-signup{
+        padding: 15px;
+    }
+
+    .sub-signup{
+        font-size: 25px;
+        padding: 17px;
+    }
+
+    .signup-anchor{
+        font-size: 25px;
+    }
+}
+
+@media (min-width : 400px) and (min-height : 900px) {
+    .signup-container{
+        width: 80%;
+    }
+
+    .signup-h1{
+        font-size: 40px;
+    }
+    .input-signup{
+        font-size: 18px;
+        font-weight: 700;
+        padding: 15px;
+    }
+
+ 
+
+    .sub-signup{
+        font-size: 20px;
+        padding: 18px;
+    }
+
+    
+    .signup-anchor{
+        font-size: 25px;
+    }
+}
+
+
+
+
+
+
