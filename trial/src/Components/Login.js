@@ -39,6 +39,7 @@ const Login = ({ onSuccessfulLogin }) => { // Accept onSuccessfulLogin as a prop
   };
 
   return (
+    // <div className="login-container">
     <div className="container-login">
       <h1 className='login-h1'>Login</h1>
       <form className='login-form' onSubmit={handleSubmit}>
@@ -66,6 +67,7 @@ const Login = ({ onSuccessfulLogin }) => { // Accept onSuccessfulLogin as a prop
         <a className='login-anchor' href="/signup">Create a new account</a>
       </form>
     </div>
+    // </div>
   );
 };
 
