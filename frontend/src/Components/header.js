@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaSearch, FaUserAlt, FaShoppingCart } from "react-icons/fa";
 import '../App.css'; 
@@ -23,12 +23,20 @@ const Header = ({ isAuthenticated, isAdmin, onLogout }) => {
                     <li><Link to="/">HOME</Link></li>
                     <li><Link to="/about">WHO WE ARE</Link></li>
                     <div className="search-bar">
-                        <input placeholder="What are you looking for?" className="search-input" aria-label="Search" />
+                        <input 
+                            placeholder="What are you looking for?" 
+                            className="search-input" 
+                            aria-label="Search" 
+                        />
                         <div className="search-icon"><FaSearch aria-hidden="true" /></div>
                     </div>
                     
                     {isAuthenticated && (
-                        <li><Link to="/profile"><FaUserAlt size={16} className='header-icons' aria-hidden="true" />PROFILE</Link></li>
+                        <li>
+                            <Link to="/profile">
+                                <FaUserAlt size={16} className='header-icons' aria-hidden="true" />PROFILE
+                            </Link>
+                        </li>
                     )}
 
                     <li>
@@ -37,15 +45,28 @@ const Header = ({ isAuthenticated, isAdmin, onLogout }) => {
                                 <FaUserAlt size={16} className='header-icons' aria-hidden="true" />LOGOUT
                             </button>
                         ) : (
-                            <Link to="/login"><FaUserAlt size={16} className='header-icons' aria-hidden="true" />LOGIN</Link>
+                            <Link to="/login">
+                                <FaUserAlt size={16} className='header-icons' aria-hidden="true" />LOGIN
+                            </Link>
                         )}
                     </li>
-                    
-                    <li><Link to="/cart"><FaShoppingCart size={17} className='header-icons' aria-hidden="true" />CART</Link></li>
+
+                    {/* Show CART tab only if isAdmin is false */}
+                    {!isAdmin && (
+                        <li>
+                            <Link to="/cart">
+                                <FaShoppingCart size={17} className='header-icons' aria-hidden="true" />CART
+                            </Link>
+                        </li>
+                    )}
 
                     {/* Show admin dashboard link only if isAdmin is true */}
                     {isAdmin && (
-                        <li><Link to="/admin" className="admin-link">ADMIN DASHBOARD</Link></li>
+                        <li>
+                            <Link to="/admin" className="admin-link">
+                                ADMIN DASHBOARD
+                            </Link>
+                        </li>
                     )}
                 </ul>
             </nav>
