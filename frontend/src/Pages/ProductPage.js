@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./products.css";
 import { LuBone } from "react-icons/lu";
-import { useParams,useNavigate} from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { TiArrowSortedDown } from "react-icons/ti";
-import { IoMdArrowDropup } from "react-icons/io"; // Updated icon for toggling
+import { IoMdArrowDropup } from "react-icons/io";
 
 const ProductsPage = () => {
   const { categoryName } = useParams();
@@ -35,12 +37,12 @@ const ProductsPage = () => {
 
     fetchProducts();
   }, [categoryName]);
-//cart
- const handleAddToCart = async (product) => {
+
+  const handleAddToCart = async (product) => {
     try {
       const user = JSON.parse(localStorage.getItem("user"));
       if (!user) {
-        alert("Please log in to add items to your cart.");
+        toast.warn("Please log in to add items to your cart.");
         navigate("/login");
         return;
       }
@@ -50,14 +52,14 @@ const ProductsPage = () => {
       });
 
       if (response.data.success) {
-        setCart(response.data.cart); 
-        navigate("/cart");
+        setCart(response.data.cart);
+        toast.success(`${product.name} has been added to your cart!`);
       } else {
-        alert("Failed to add item to cart. Please try again.");
+        toast.error("Failed to add the item to the cart. Please try again.");
       }
     } catch (error) {
       console.error("Error adding item to cart:", error);
-      alert("An error occurred. Please try again.");
+      toast.error("An error occurred while adding the product. Please try again.");
     }
   };
 
@@ -66,6 +68,9 @@ const ProductsPage = () => {
 
   return (
     <section className="products-page">
+      {/* Toast Notifications */}
+      <ToastContainer position="top-center" autoClose={3000} />
+
       <div className="product-aside">
         <div className="aside-content">
           <div className="aside-category" onClick={() => toggle(1)}>
@@ -158,7 +163,7 @@ const ProductsPage = () => {
                   <p>Price: ${product.price.toFixed(2)}</p>
                   <p>Rating: {product.rating}</p>
                 </div>
-                <button className="product-cart-button"  onClick={() => handleAddToCart(product)}>
+                <button className="product-cart-button" onClick={() => handleAddToCart(product)}>
                   ADD TO CART
                   <LuBone className="bone-icon" size={18} />
                 </button>
