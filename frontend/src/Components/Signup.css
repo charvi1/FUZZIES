@@ -11,7 +11,7 @@
     text-align: center;
     width: 25%;
     z-index: 1;
-    position: relative; 
+    position: fixed; 
 }
 
 .signup-container::before {

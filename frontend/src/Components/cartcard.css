@@ -1,8 +1,8 @@
-/* cart.css */
+/* Cart Card Container */
 .cart-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: flex; /* Ensure horizontal layout */
+    align-items: center; /* Vertically align content */
+    justify-content: space-between; /* Space out elements */
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 16px;
@@ -10,10 +10,11 @@
     background-color: #f9f9f9;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease-in-out;
+    flex-direction: row; /* Keep elements in a horizontal line */
 }
 
 .cart-card:hover {
-    transform: scale(1.02);
+    transform: scale(1.02); /* Slight zoom on hover */
 }
 
 /* Image Styling */
@@ -22,32 +23,75 @@
     height: 120px;
     border-radius: 8px;
     object-fit: cover;
-    margin-right: 16px;
+    margin-right: 16px; /* Space between image and details */
 }
 
 /* Content Styling */
-.cart-card h3 {
+.cart-card-details {
+    flex-grow: 1; /* Take available space */
+    margin-right: 16px; /* Space between details and buttons */
+}
+
+.cart-card-details h3 {
     font-size: 18px;
     margin: 0 0 8px;
     color: #333;
 }
 
-.cart-card p {
+.cart-card-details p {
     margin: 4px 0;
     color: #555;
     font-size: 14px;
 }
 
-/* Ensure content is aligned */
-.cart-card div {
-    flex-grow: 1;
-    margin-left: 16px;
+/* Quantity Controls and Remove Button */
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 16px; /* Space between quantity controls and remove button */
 }
 
-/* Price and Quantity Styling */
-.cart-card p:nth-child(4), 
-.cart-card p:nth-child(5) {
+.quantity-controls button {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
     font-weight: bold;
-    color: #000;
-    font-size: 16px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.quantity-controls button:hover {
+    background-color: #45a049;
+    transform: scale(1.1);
+}
+
+.quantity-controls button:active {
+    background-color: #3e8e41;
+    transform: scale(0.95);
+}
+
+/* Remove Button */
+.remove-button {
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.remove-button:hover {
+    background-color: #d32f2f;
+}
+
+.remove-button:active {
+    background-color: #b71c1c;
+    transform: scale(0.95);
 }

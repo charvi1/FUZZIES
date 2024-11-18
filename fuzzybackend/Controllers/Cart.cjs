@@ -112,7 +112,53 @@ const removeFromCart = async (req, res) => {
         });
     }
 };
+const updateCart = async (req, res) => {
+    const { email, productId, quantity } = req.body; // Accept quantity in the request body
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
 
-module.exports = { addToCart, getCart, removeFromCart };
+        // Find the product in the user's cart
+        const cartItem = user.cart.find(item => item.productId && item.productId.toString() === productId);
+
+        if (!cartItem) {
+            return res.status(404).json({
+                success: false,
+                message: "Product not found in cart",
+            });
+        }
+
+        if (quantity <= 0) {
+            // Remove item if quantity is 0 or less
+            user.cart = user.cart.filter(item => item.productId.toString() !== productId);
+        } else {
+            // Update quantity
+            cartItem.quantity = quantity;
+        }
+
+        await user.save();
+        await user.populate("cart.productId");
+
+        return res.status(200).json({
+            success: true,
+            message: "Cart updated successfully",
+            cart: user.cart,
+        });
+    } catch (err) {
+        console.error("Error in updateCart:", err);
+        return res.status(500).json({
+            success: false,
+            message: "Failed to update cart",
+        });
+    }
+};
+
+module.exports = { addToCart, getCart, removeFromCart, updateCart };
+
+
+
+
 
 
