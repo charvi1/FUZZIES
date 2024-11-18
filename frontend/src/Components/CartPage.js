@@ -9,6 +9,7 @@ const CartPage = () => {
     const [cart, setCart] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [totalAmount, setTotalAmount] = useState(0); // State to store total amount
 
     // Retrieve user email from local storage
     const user = JSON.parse(localStorage.getItem('user'));
@@ -20,6 +21,7 @@ const CartPage = () => {
             const response = await axios.post('http://localhost:2151/api/cart', { email });
             if (response.data.success) {
                 setCart(response.data.cart); // Update cart state with fetched data
+                calculateTotal(response.data.cart); // Calculate total amount
             } else {
                 setError('Failed to fetch cart data.');
             }
@@ -31,6 +33,15 @@ const CartPage = () => {
         }
     };
 
+    // Function to calculate total bill
+    const calculateTotal = (cartItems) => {
+        let total = 0;
+        cartItems.forEach(item => {
+            total += item.productId.price * item.quantity; // Multiply price by quantity for each item
+        });
+        setTotalAmount(total); // Set total amount in state
+    };
+
     // Remove item from cart
     const removeFromCart = async (productId) => {
         try {
@@ -39,6 +50,7 @@ const CartPage = () => {
             });
             if (response.data.success) {
                 setCart(cart.filter((item) => item.productId._id !== productId));
+                calculateTotal(cart.filter((item) => item.productId._id !== productId)); // Recalculate total
             } else {
                 console.error('Failed to remove item from cart:', response.data.message);
             }
@@ -47,26 +59,16 @@ const CartPage = () => {
         }
     };
 
-    // Debounced update cart item quantity
-    let debounceTimeout;
+    // Update cart item quantity
     const updateCartQuantity = (productId, quantity) => {
-        clearTimeout(debounceTimeout);
-        debounceTimeout = setTimeout(async () => {
-            try {
-                const response = await axios.patch('http://localhost:2151/api/cart/updateCart', {
-                    email,
-                    productId,
-                    quantity,
-                });
-                if (response.data.success) {
-                    setCart(response.data.cart);
-                } else {
-                    console.error('Failed to update cart:', response.data.message);
-                }
-            } catch (error) {
-                console.error('Error updating cart:', error);
+        const updatedCart = cart.map(item => {
+            if (item.productId._id === productId) {
+                item.quantity = quantity;
             }
-        }, 500);
+            return item;
+        });
+        setCart(updatedCart);
+        calculateTotal(updatedCart); // Recalculate total with updated quantities
     };
 
     // Fetch user cart on component mount
@@ -97,6 +99,10 @@ const CartPage = () => {
                                 updateCartQuantity={updateCartQuantity} // Pass the update function as a prop
                             />
                         ))}
+                        <div className="total-amount">
+                            <h3>Total Bill: ${totalAmount.toFixed(2)}</h3>
+                        </div>
+                        <button onClick={() => navigate('/checkout')}>Proceed to Checkout</button>
                     </div>
                 ) : (
                     <div className="checkout empty-cart">
