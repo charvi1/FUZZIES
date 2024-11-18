@@ -35,10 +35,9 @@ const CartPage = () => {
     const removeFromCart = async (productId) => {
         try {
             const response = await axios.delete('http://localhost:2151/api/cart/removeFromCart', {
-                data: { email, productId }, // Pass email and productId in the request body
+                data: { email, productId },
             });
             if (response.data.success) {
-                // Update the cart state by filtering out the removed item
                 setCart(cart.filter((item) => item.productId._id !== productId));
             } else {
                 console.error('Failed to remove item from cart:', response.data.message);
@@ -46,6 +45,28 @@ const CartPage = () => {
         } catch (error) {
             console.error('Error removing item from cart:', error);
         }
+    };
+
+    // Debounced update cart item quantity
+    let debounceTimeout;
+    const updateCartQuantity = (productId, quantity) => {
+        clearTimeout(debounceTimeout);
+        debounceTimeout = setTimeout(async () => {
+            try {
+                const response = await axios.patch('http://localhost:2151/api/cart/updateCart', {
+                    email,
+                    productId,
+                    quantity,
+                });
+                if (response.data.success) {
+                    setCart(response.data.cart);
+                } else {
+                    console.error('Failed to update cart:', response.data.message);
+                }
+            } catch (error) {
+                console.error('Error updating cart:', error);
+            }
+        }, 500);
     };
 
     // Fetch user cart on component mount
@@ -58,8 +79,8 @@ const CartPage = () => {
         }
     }, [email]);
 
-    if (loading) return <div>Loading cart...</div>;
-    if (error) return <div>{error}</div>;
+    if (loading) return <div className="loading">Loading cart...</div>;
+    if (error) return <div className="error-message">{error}</div>;
 
     return (
         <main>
@@ -72,7 +93,8 @@ const CartPage = () => {
                             <CartCard
                                 key={item._id}
                                 item={item}
-                                removeFromCart={removeFromCart} // Pass the remove function as a prop
+                                removeFromCart={removeFromCart}
+                                updateCartQuantity={updateCartQuantity} // Pass the update function as a prop
                             />
                         ))}
                     </div>

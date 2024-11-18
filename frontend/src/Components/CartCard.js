@@ -1,16 +1,25 @@
 import React from 'react';
 import './cartcard.css';
 
-const CartCard = ({ item, removeFromCart }) => {
+const CartCard = ({ item, removeFromCart, updateCartQuantity }) => {
+    // Safeguard to handle incomplete item data gracefully
     if (!item || !item.productId) {
-        return <p>Product details are not available.</p>;
+        return null; // Do not render anything if the item is invalid
     }
 
     const { productId, quantity } = item;
     const { name, description, price, rating, images } = productId;
 
-    const handleRemove = () => {
-        removeFromCart(productId._id); // Trigger the remove function passed as a prop
+    const handleIncrease = () => {
+        updateCartQuantity(productId._id, quantity + 1); // Increase quantity
+    };
+
+    const handleDecrease = () => {
+        if (quantity > 1) {
+            updateCartQuantity(productId._id, quantity - 1); // Decrease quantity
+        } else {
+            removeFromCart(productId._id); // Remove item if quantity reaches 0
+        }
     };
 
     return (
@@ -19,11 +28,24 @@ const CartCard = ({ item, removeFromCart }) => {
             <div className="cart-card-details">
                 <h3>{name}</h3>
                 <p>{description}</p>
-                <p><strong>Quantity:</strong> {quantity}</p>
-                <p><strong>Price:</strong> ${price.toFixed(2)}</p>
-                <p><strong>Rating:</strong> {rating}</p>
+                <p>
+                    <strong>Quantity:</strong> {quantity}
+                </p>
+                <p>
+                    <strong>Price:</strong> ${price.toFixed(2)}
+                </p>
+                <p>
+                    <strong>Rating:</strong> {rating}
+                </p>
             </div>
-            <button className="remove-button" onClick={handleRemove}>
+            <div className="quantity-controls">
+                <button onClick={handleDecrease}>-</button>
+                <button onClick={handleIncrease}>+</button>
+            </div>
+            <button
+                className="remove-button"
+                onClick={() => removeFromCart(productId._id)}
+            >
                 Remove
             </button>
         </div>
