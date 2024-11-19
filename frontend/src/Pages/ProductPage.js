@@ -16,6 +16,8 @@ const ProductsPage = () => {
   const [error, setError] = useState(null);
   const [open, setOpen] = useState(null); // For toggling the filter sections
   const [cart, setCart] = useState([]);
+  const [modalProduct, setModalProduct] = useState(null); // For feedback modal
+  const [newFeedback, setNewFeedback] = useState(""); // Feedback input
 
   const toggle = (index) => {
     setOpen(open === index ? null : index);
@@ -60,6 +62,44 @@ const ProductsPage = () => {
     } catch (error) {
       console.error("Error adding item to cart:", error);
       toast.error("An error occurred while adding the product. Please try again.");
+    }
+  };
+
+  const openFeedbackModal = (product) => {
+    setModalProduct(product);
+  };
+
+  const handleFeedbackSubmit = async () => {
+    if (!newFeedback.trim()) {
+      toast.warn("Feedback cannot be empty.");
+      return;
+    }
+
+    try {
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (!user) {
+        toast.warn("Please log in to submit feedback.");
+        navigate("/login");
+        return;
+      }
+
+      const response = await axios.post(
+        `http://localhost:2151/api/products/${modalProduct._id}/feedback`,
+        { feedback: newFeedback, userEmail: user.email },
+        { headers: { Authorization: `Bearer ${user.token}` } }
+      );
+
+      if (response.data.success) {
+        setModalProduct((prev) => ({
+          ...prev,
+          feedbacks: response.data.feedbacks,
+        }));
+        setNewFeedback("");
+        toast.success("Feedback submitted successfully!");
+      }
+    } catch (error) {
+      console.error("Error submitting feedback:", error);
+      toast.error("An error occurred while submitting feedback. Please try again.");
     }
   };
 
@@ -167,6 +207,7 @@ const ProductsPage = () => {
                   ADD TO CART
                   <LuBone className="bone-icon" size={18} />
                 </button>
+                <button onClick={() => openFeedbackModal(product)}>Feedback</button>
               </div>
             </div>
           ))
@@ -174,6 +215,29 @@ const ProductsPage = () => {
           <p>No products found for this category.</p>
         )}
       </div>
+
+      {/* Feedback Modal */}
+      {modalProduct && (
+        <div className="modal">
+          <div className="modal-content">
+            <h3>Feedback for {modalProduct.name}</h3>
+            <ul>
+              {modalProduct.feedbacks.map((fb, index) => (
+                <li key={index}>
+                  <strong>{fb.userEmail}:</strong> {fb.feedback} {/* Display email instead of username */}
+                </li>
+              ))}
+            </ul>
+            <textarea
+              value={newFeedback}
+              onChange={(e) => setNewFeedback(e.target.value)}
+              placeholder="Write your feedback here..."
+            ></textarea>
+            <button onClick={handleFeedbackSubmit}>Submit Feedback</button>
+            <button onClick={() => setModalProduct(null)}>Close</button>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

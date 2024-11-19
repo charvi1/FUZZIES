@@ -151,3 +151,112 @@
 .bone-icon {
     margin-left: 5px;
 }
+.feedback-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .feedback-content {
+    background: #fff;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .feedback-textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  /* .feedback-content button {
+    margin: 5px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  } */
+  
+  .feedback-content button:hover {
+    background-color: #0056b3;
+  }
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-height: 80%;
+    overflow-y: auto;
+  }
+  
+  .modal-content h3 {
+    margin-top: 0;
+  }
+  
+  .modal-content textarea {
+    width: 100%;
+    margin: 10px 0;
+  }
+  
+  .modal-content button {
+    margin-right: 10px;
+  }
+  /* Feedback button */
+.feedback-button {
+    font-family: "League Spartan", system-ui;
+    letter-spacing: 1.5px;
+    text-align: center;
+    padding: 10px;
+    background-color: #21211f; /* Same as Add to Cart button */
+    color: black;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: auto;
+}
+
+.feedback-button:focus {
+    outline: 2px solid #f39c12; /* Same focus style as Add to Cart */
+}
+
+.feedback-button:hover {
+    background-color: #f39c12; /* Same hover effect as Add to Cart */
+}
+
+/* Bone icon inside feedback button */
+.feedback-button .bone-icon {
+    margin-left: 5px;
+}

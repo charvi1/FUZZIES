@@ -44,17 +44,7 @@ const Header = ({ isAuthenticated, isAdmin, onLogout }) => {
                         </li>
                     )}
 
-                    <li>
-                        {isAuthenticated ? (
-                            <button onClick={handleLogoutClick} className="logout-button">
-                                <FaUserAlt size={16} className='header-icons' aria-hidden="true" />LOGOUT
-                            </button>
-                        ) : (
-                            <Link to="/login">
-                                <FaUserAlt size={16} className='header-icons' aria-hidden="true" />LOGIN
-                            </Link>
-                        )}
-                    </li>
+                   
 
                     {/* Show CART tab only if isAdmin is false */}
                     {!isAdmin && (
@@ -73,6 +63,17 @@ const Header = ({ isAuthenticated, isAdmin, onLogout }) => {
                             </Link>
                         </li>
                     )}
+                     <li>
+                        {isAuthenticated ? (
+                            <button onClick={handleLogoutClick} className="logout-button">
+                                <FaUserAlt size={16} className='header-icons' aria-hidden="true" />LOGOUT
+                            </button>
+                        ) : (
+                            <Link to="/login">
+                                <FaUserAlt size={16} className='header-icons' aria-hidden="true" />LOGIN
+                            </Link>
+                        )}
+                    </li>
                 </ul>
             </nav>
         </div>

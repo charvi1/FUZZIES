@@ -34,7 +34,7 @@ function App() {
     const handleLogout = () => {
         setIsAuthenticated(false);
         setIsAdmin(false);
-        localStorage.removeItem('user');
+        localStorage.clear()
         showFeedback('You have been logged out.');
     };
 
