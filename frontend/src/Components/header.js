@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaSearch, FaUserAlt, FaShoppingCart } from "react-icons/fa";
+import { FaUserAlt, FaShoppingCart } from "react-icons/fa";
+import { RiAdminFill } from "react-icons/ri";
+import { AiOutlineLogout } from "react-icons/ai";
 import '../App.css'; 
 
 const Header = ({ isAuthenticated, isAdmin, onLogout }) => {
@@ -20,6 +22,7 @@ const Header = ({ isAuthenticated, isAdmin, onLogout }) => {
             <hr />
             <nav>
                 <ul>
+                    <div className='navdivwologo'>
                     <li><Link to="/">HOME</Link></li>
 
                     {/* Show WHO WE ARE link only if isAdmin is false */}
@@ -27,46 +30,50 @@ const Header = ({ isAuthenticated, isAdmin, onLogout }) => {
                         <li><Link to="/about">WHO WE ARE</Link></li>
                     )}
 
-                    <div className="search-bar">
+                     {/* Show admin dashboard link only if isAdmin is true */}
+                     {isAdmin && (
+                        <li>
+                            <Link to="/admin" className="admin-link">
+                            {/* <RiAdminFill size={20} className='header-icons' aria-hidden="true" /> */}
+                                ADMIN DASHBOARD
+                            </Link>
+                        </li>
+                    )}
+                    </div>
+
+                    {/* <div className="search-bar">
                         <input 
                             placeholder="What are you looking for?" 
                             className="search-input" 
                             aria-label="Search" 
                         />
                         <div className="search-icon"><FaSearch aria-hidden="true" /></div>
-                    </div>
+                    </div> */}
                     
-                    {isAuthenticated && (
-                        <li>
-                            <Link to="/profile">
-                                <FaUserAlt size={16} className='header-icons' aria-hidden="true" />PROFILE
-                            </Link>
-                        </li>
-                    )}
-
                    
+
+                   <div className='navdivwlogo'>
 
                     {/* Show CART tab only if isAdmin is false */}
                     {!isAdmin && (
                         <li>
                             <Link to="/cart">
-                                <FaShoppingCart size={17} className='header-icons' aria-hidden="true" />CART
+                                <FaShoppingCart size={19} className='header-icons' aria-hidden="true" />
                             </Link>
                         </li>
                     )}
 
-                    {/* Show admin dashboard link only if isAdmin is true */}
-                    {isAdmin && (
+                   {isAuthenticated && (
                         <li>
-                            <Link to="/admin" className="admin-link">
-                                ADMIN DASHBOARD
+                            <Link to="/profile">
+                                <FaUserAlt size={17} className='header-icons' aria-hidden="true" />
                             </Link>
                         </li>
                     )}
                      <li>
                         {isAuthenticated ? (
                             <button onClick={handleLogoutClick} className="logout-button">
-                                <FaUserAlt size={16} className='header-icons' aria-hidden="true" />LOGOUT
+                                <AiOutlineLogout size={23} className='header-icons' aria-hidden="true" />
                             </button>
                         ) : (
                             <Link to="/login">
@@ -74,6 +81,7 @@ const Header = ({ isAuthenticated, isAdmin, onLogout }) => {
                             </Link>
                         )}
                     </li>
+                    </div>
                 </ul>
             </nav>
         </div>

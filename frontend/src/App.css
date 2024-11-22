@@ -19,9 +19,28 @@ nav ul{
     display: flex;
     width: 85%;
     justify-content: space-between;
+    /* justify-content:space-evenly; */
     align-items: center;
     font-weight: 500;
     margin: auto;
+}
+
+.navdivwologo{
+    display: flex;
+    justify-content: space-around;
+    width: 30%;
+}
+
+.navdivwologo li:hover{
+    transition: all ease 0.5s;
+    border-bottom: 2px solid #553326;
+}
+
+.navdivwlogo{
+    display: flex;
+    justify-content: space-around;
+    width: 20%;
+    align-items: center;
 }
 
 
@@ -45,7 +64,6 @@ nav ul input:focus{
     width: 30%;
     border: 2px solid grey;
     border-radius: 10px;
-    /* padding: 5px; */
     background-color: white;
     padding-right: 10px;
 }
@@ -65,7 +83,6 @@ nav ul input:focus{
 
 nav a{
     text-decoration: none;
-    /* color: #553326; */
     color: #252823;
     font-weight: 600;
 }
@@ -74,10 +91,7 @@ nav a i{
     padding-right: 5px;
 }
 
-nav li:hover{
-    transition: all ease 0.5s;
-    border-bottom: 2px solid #553326;
-}
+
 
 hr{
     width: 85%;
@@ -125,10 +139,9 @@ hr{
 
 
 .text-heading h1{
+    font-size: 7.5vh;
     letter-spacing: -3.2px;
-    /* color: #5f3c2f; */
     color: #7C5F4E;
-    /* color: #252823; */
     font-family: Quattrocento;
 }
 
@@ -137,7 +150,6 @@ hr{
     letter-spacing: -0.10px;
     color: #252823;
     font-family: Quattrocento;
-    /* color: #7C5F4E; */
 }
 .logout-button {
     height: 40px; /* Match height of other buttons */
@@ -175,24 +187,19 @@ hr{
 
 .category-section{
     background-color: #ECEAEB;
-    /* height: 50vh; */
 }
 
 .category{
     display: flex;
     justify-content: end;
     align-items: end;
-    /* height: inherit; */
 }
 
 
 .category-section h1{
     padding-top: 10vh;
 }
-/* .category-items :hover{
-    transform: scale(1.2);
-    transition: all ease-in-out 0.5s;
-} */
+
 
 .category-items a{
     color: #5f3c2f;
@@ -214,8 +221,6 @@ hr{
 }
 
 .section2{
-    /* background-color: #CFEFBF; */
-    /* background-color: #C58856; */
     background-color: #CAC0B5;
     display: flex;
     align-items: center;
@@ -225,7 +230,7 @@ hr{
 }
 
 .features{
-    height: 50vh;
+    height: 47vh;
     display: flex;
     align-items: end;
     justify-content: center;
@@ -247,9 +252,6 @@ hr{
 .section-h1{
     font-size: 40px;
     font-weight: 900;
-    /* color: #0e3c4f; */
-    /* font-style: italic;
-    font-family: 'Times New Roman', Times, serif; */
     font-family: Quattrocento;
     text-align: center;
 }
@@ -257,9 +259,6 @@ hr{
 .section2-h1{
     font-size: 44px;
     font-weight: 900;
-    /* color: #0e3c4f; */
-    /* font-style: italic;
-    font-family: 'Times New Roman', Times, serif; */
     font-family: Quattrocento;
     text-align: center;
 }
@@ -332,14 +331,10 @@ footer{
 }
 
 .footer {
-    /* height: 50vh; */
-    /* width: 100%; */
-    /* background-color: #654222; */
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    /* box-shadow: 0 0 10px 8px rgba(0, 0, 0, 0.397) inset; */
   }
   
   .footer-bar {
@@ -352,7 +347,6 @@ footer{
   .footer-h2 {
     color: #FAF9F6;
     margin-bottom: 15px;
-    /* font-family: "Alex Brush", cursive; */
     font-family: "Fredoka", sans-serif;
     font-weight: 800;
     font-size: 35px;
@@ -395,7 +389,6 @@ footer{
 
 .email-para{
     font-family: Quattrocento;
-    /* font-size: 15px; */
 }
 
   .footer-nav {

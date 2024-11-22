@@ -50,6 +50,8 @@
     display: flex;
     gap: 10px;
     margin-top: 10px;
+    font-weight: 600;
+    color: white;
 }
 
 .label {
@@ -205,36 +207,71 @@
     justify-content: center;
     align-items: center;
   }
-  
+
+  .ulmodel{
+    padding: 0.35vh 3vh;
+  }
+  .limodel{
+    padding: 0.25vh;
+  }
   .modal-content {
     background: white;
-    padding: 20px;
+    padding: 44px;
     border-radius: 8px;
-    width: 400px;
+    width: 391px;
     max-height: 80%;
     overflow-y: auto;
+    background-color: wheat;
   }
   
-  .modal-content h3 {
-    margin-top: 0;
+  .modal-content h3 { 
+    text-align: center;
+    font-size: 2.7vh;
+    font-weight: 800;
+    padding: 1vh 0vh;
   }
   
   .modal-content textarea {
     width: 100%;
-    margin: 10px 0;
-  }
+    margin: 25px 0;
+    /* border: none; */
+    padding: 2vh;
+    border-radius: 1.2vh;
+    /* border: none; */
+    outline: none;
+}
   
-  .modal-content button {
-    margin-right: 10px;
-  }
+ .feedbacksubmit{
+    padding: 2vh;
+    border-radius: 3vh;
+    border: none;
+    background-color: saddlebrown;
+    color: white;
+    font-size: 1.9vh;
+    font-weight: 650;
+ }
+
+ .closebutton{
+    padding: 2vh 4.2vh;
+    border-radius: 3vh;
+    border: none;
+    background-color: saddlebrown;
+    color: white;
+    font-size: 1.9vh;
+    font-weight: 650;
+    margin-left: 6vh;
+
+ }
+
+
   /* Feedback button */
 .feedback-button {
     font-family: "League Spartan", system-ui;
     letter-spacing: 1.5px;
     text-align: center;
     padding: 10px;
-    background-color: #21211f; /* Same as Add to Cart button */
-    color: black;
+    background-color: #21211f;
+    color: white;
     border: none;
     border-radius: 20px;
     font-size: 14px;
@@ -249,14 +286,12 @@
 }
 
 .feedback-button:focus {
-    outline: 2px solid #f39c12; /* Same focus style as Add to Cart */
+    outline: 2px solid #f39c12; 
 }
 
 .feedback-button:hover {
-    background-color: #f39c12; /* Same hover effect as Add to Cart */
+    background-color: #f39c12; 
 }
 
-/* Bone icon inside feedback button */
-.feedback-button .bone-icon {
-    margin-left: 5px;
-}
+
+

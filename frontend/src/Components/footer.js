@@ -6,20 +6,17 @@ const Footer = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
 
-  // Function to handle form submission
+
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Simple email validation
+
     if (!email || !/\S+@\S+\.\S+/.test(email)) {
       setMessage("Please enter a valid email address.");
       return;
     }
-
-    // If the email is valid, you can handle further actions like API calls here
     setMessage("Thank you for subscribing!");
 
-    // Reset the email input
     setEmail('');
   };
 
