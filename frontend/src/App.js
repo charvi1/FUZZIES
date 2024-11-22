@@ -20,7 +20,7 @@ function App() {
         const storedUser = JSON.parse(localStorage.getItem('user'));
         if (storedUser) {
             setIsAuthenticated(true);
-            setIsAdmin(storedUser.isAdmin || false); // Ensure it's set to a boolean
+            setIsAdmin(storedUser.isAdmin || false); 
         }
     }, []);
 

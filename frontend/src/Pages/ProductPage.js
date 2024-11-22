@@ -207,7 +207,7 @@ const ProductsPage = () => {
                   ADD TO CART
                   <LuBone className="bone-icon" size={18} />
                 </button>
-                <button onClick={() => openFeedbackModal(product)}>Feedback</button>
+                <button  className='feedback-button' onClick={() => openFeedbackModal(product) }>Feedback</button>
               </div>
             </div>
           ))
@@ -221,10 +221,10 @@ const ProductsPage = () => {
         <div className="modal">
           <div className="modal-content">
             <h3>Feedback for {modalProduct.name}</h3>
-            <ul>
+            <ul className="ulmodel">
               {modalProduct.feedbacks.map((fb, index) => (
-                <li key={index}>
-                  <strong>{fb.userEmail}:</strong> {fb.feedback} {/* Display email instead of username */}
+                <li className="limodel" key={index}>
+                  <strong>{fb.userEmail}:</strong> {fb.feedback} 
                 </li>
               ))}
             </ul>
@@ -233,8 +233,8 @@ const ProductsPage = () => {
               onChange={(e) => setNewFeedback(e.target.value)}
               placeholder="Write your feedback here..."
             ></textarea>
-            <button onClick={handleFeedbackSubmit}>Submit Feedback</button>
-            <button onClick={() => setModalProduct(null)}>Close</button>
+            <button className="feedbacksubmit" onClick={handleFeedbackSubmit}>Submit Feedback</button>
+            <button className="closebutton" onClick={() => setModalProduct(null)}>Close</button>
           </div>
         </div>
       )}
