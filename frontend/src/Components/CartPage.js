@@ -89,8 +89,11 @@ const CartPage = () => {
             <div className="main-color"></div>
             <div className="cartPage-container">
                 {cart.length > 0 ? (
-                    <div className="checkout cart-items">
+                    
+                    <div className="checkout">
                         <h2 className="shopping-cart">Your Shopping Cart</h2>
+                        <div className='cart-div-container'>
+                        <div className='cart-items'>
                         {cart.map((item) => (
                             <CartCard
                                 key={item._id}
@@ -98,11 +101,16 @@ const CartPage = () => {
                                 removeFromCart={removeFromCart}
                                 updateCartQuantity={updateCartQuantity} // Pass the update function as a prop
                             />
+                            
                         ))}
+                        </div>
+                        <div className='price-breakdown'>
                         <div className="total-amount">
                             <h3>Total Bill: ${totalAmount.toFixed(2)}</h3>
                         </div>
-                        <button onClick={() => navigate('/checkout')}>Proceed to Checkout</button>
+                        <button className='checkout-btn' onClick={() => navigate('/checkout')}>Proceed to Checkout</button>
+                        </div>
+                        </div>
                     </div>
                 ) : (
                     <div className="checkout empty-cart">

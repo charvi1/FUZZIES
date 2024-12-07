@@ -88,6 +88,7 @@ const ProfilePage = () => {
     }
 
     return (
+        <main className='profile-main'>
         <div className="profile-container">
             <div className="profile-header">
                 <div
@@ -96,7 +97,7 @@ const ProfilePage = () => {
                         backgroundImage: `url(${user.profileImage || 'https://via.placeholder.com/150'})`, // Fallback to placeholder
                     }}
                 ></div>
-                <div className="profile-username">{user.name}</div>
+                <div className="profile-username">{user.name}</div> 
             </div>
             <div className="profile-details">
                 <p><strong>Full Name:</strong> {isEditing ? <input type="text" value={name} onChange={(e) => setName(e.target.value)} /> : user.name}</p>
@@ -120,6 +121,7 @@ const ProfilePage = () => {
                 )}
             </div>
         </div>
+        </main>
     );
 };
 

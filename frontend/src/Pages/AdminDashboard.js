@@ -82,7 +82,6 @@ const AdminDashboard = () => {
 
     return (
         <div className="admin-dashboard">
-            <h1>Admin Dashboard</h1>
             {feedbackMessage && <div className="feedback-message">{feedbackMessage}</div>}
             <form onSubmit={handleSubmit} className="product-form">
                 <h2>{editingProductId ? 'Edit Product' : 'Create New Product'}</h2>
@@ -114,17 +113,20 @@ const AdminDashboard = () => {
                     {editingProductId ? 'Update Product' : 'Create Product'}
                 </button>
             </form>
-
-            <h2 style={{ paddingTop: '28px' }}>Product List</h2>
+            <div className='admin-product-list'>
+            <h2>Product List</h2>
             <ul className="product-list">
                 {products.map((product) => (
                     <li key={product._id} className="product-item">
-                        {product.name} - ${product.price}
+                        <div className='admin-product-name'>
+                            {product.name} - ${product.price}
+                        </div>
                         <button onClick={() => handleEdit(product)} className="edit-button">Edit</button>
                         <button onClick={() => handleDelete(product._id)} className="delete-button">Delete</button>
                     </li>
                 ))}
             </ul>
+            </div>
         </div>
     );
 };

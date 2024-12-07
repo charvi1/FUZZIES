@@ -24,30 +24,29 @@ const CartCard = ({ item, removeFromCart, updateCartQuantity }) => {
 
     return (
         <div className="cart-card">
-            <img src={images[0]} alt={name} className="cart-card-img" />
+            <div className='product-image-name'>
+                <img src={images[0]} alt={name} className="cart-card-img" />
+                <div>
+                    <h3>{name}</h3>
+                    <p>{description}</p>
+                </div>
+            </div>
             <div className="cart-card-details">
-                <h3>{name}</h3>
-                <p>{description}</p>
-                <p>
-                    <strong>Quantity:</strong> {quantity}
-                </p>
-                <p>
-                    <strong>Price:</strong> ${price.toFixed(2)}
-                </p>
-                <p>
-                    <strong>Rating:</strong> {rating}
-                </p>
+                <div className='cart-p'>
+                    <p><strong>Quantity:</strong> {quantity}</p>
+                    <p><strong>Price:</strong> ${price.toFixed(2)}</p>
+                    <p><strong>Rating:</strong> {rating}</p>
+                </div>
             </div>
-            <div className="quantity-controls">
-                <button onClick={handleDecrease}>-</button>
-                <button onClick={handleIncrease}>+</button>
+            <div className='cart-btns'>
+                <div className="quantity-controls">
+                    <button onClick={handleDecrease}>-</button>
+                    <button onClick={handleIncrease}>+</button>
+                </div>
+                <button className="remove-button" onClick={() => removeFromCart(productId._id)}>
+                    Remove
+                </button>
             </div>
-            <button
-                className="remove-button"
-                onClick={() => removeFromCart(productId._id)}
-            >
-                Remove
-            </button>
         </div>
     );
 };
