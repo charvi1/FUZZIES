@@ -1,12 +1,12 @@
 .admin-dashboard {
-    max-width: 800px;
-    margin: 20px auto;
     padding: 30px;
     border: 1px solid #e0e0e0;
     border-radius: 12px;
     background-color: #ffffff;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
     font-family: 'Arial', sans-serif;
+    display: flex;
+    gap: 40px;
 }
 
 h1 {
@@ -30,21 +30,26 @@ h1 {
 .product-form {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Add gap between form elements */
+    gap: 15px; /* Add gap between form elements */
+    width: 50%;
+    height: 100vh;
+    position: sticky;
+    top: 0;
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .product-form label {
     font-weight: bold;
     margin-bottom: 8px;
     color: #555;
+    font-size: 15px;
 }
 
 .product-form input {
-    padding: 12px;
+    padding: 2px;
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 16px;
@@ -60,7 +65,7 @@ h1 {
 }
 
 .submit-button {
-    padding: 12px;
+    padding: 8px;
     background-color: #aa9b8b;
     color: white;
     border: none;
@@ -72,6 +77,14 @@ h1 {
 
 .submit-button:hover {
     background-color: #c5b6a7;
+}
+
+.admin-product-list{
+    width: 50%;
+}
+
+.admin-product-name{
+    width: 50%;
 }
 
 .product-list {

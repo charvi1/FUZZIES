@@ -1,6 +1,5 @@
-
 import React from 'react';
-import '../App.css'; 
+import '../App.css';
 
 const FeaturesSection = () => {
   return (
@@ -11,7 +10,9 @@ const FeaturesSection = () => {
         <div className="center features-img"><img src="feature1.png" alt="Feature 1" /></div>
         <img className="features-img" src="feature2.png" alt="Feature 2" />
       </div>
-      <img className="whyus" src="whyus.png" alt="Why Us" />
+      <div className='whyus-cont'>
+        <img className="whyus" src="whyus.png" alt="Why Us" />
+      </div>
     </section>
   );
 };

@@ -1,7 +1,7 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
-const User = require('../models/User.cjs'); // Update based on your actual path
+const User = require('../models/User.cjs'); 
 const router = express.Router();
 
 // User Signup
@@ -36,7 +36,6 @@ router.post(
 
             await user.save();
 
-            // Create JWT token
             const payload = { user: { id: user.id ,uuid:user.uuid,isAdmin: user.isAdmin } };
             const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
 

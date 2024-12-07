@@ -12,6 +12,8 @@
 .header{
     background-color: #CAC0B5;
     color: #996A58;
+    z-index: 5;
+    position: relative;
 }
 
 nav ul{
@@ -139,7 +141,7 @@ hr{
 
 
 .text-heading h1{
-    font-size: 7.5vh;
+    font-size: 4vw;
     letter-spacing: -3.2px;
     color: #7C5F4E;
     font-family: Quattrocento;
@@ -150,6 +152,7 @@ hr{
     letter-spacing: -0.10px;
     color: #252823;
     font-family: Quattrocento;
+    font-size: 3.2vw;
 }
 .logout-button {
     height: 40px; /* Match height of other buttons */
@@ -180,7 +183,7 @@ hr{
     justify-content: space-around;
     padding: 10%;
     padding-top: 2%;
-    height: 50vh;
+    /* height: 50vh; */
     align-items: end;
 }
 
@@ -197,7 +200,7 @@ hr{
 
 
 .category-section h1{
-    padding-top: 10vh;
+    padding-top: 6vw;
 }
 
 
@@ -254,6 +257,7 @@ hr{
     font-weight: 900;
     font-family: Quattrocento;
     text-align: center;
+    margin-bottom: 0px;
 }
 
 .section2-h1{
@@ -272,7 +276,6 @@ hr{
 
 
 .section3{
-    height: 55vh;
     display: flex;
     justify-content: center;
     align-items: end;
@@ -281,12 +284,14 @@ hr{
 
 .brands{
     display: flex;
-    width: 80%;  
+    width: 100%;
+    padding: 10% 5% 10% 10%;
     gap: 10%; 
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    height: 40vh;
+    /* height: 40vh; */
+    /* margin-top: 10vh; */
 }
 
 .branditems{
@@ -469,5 +474,335 @@ footer{
     margin-top: 25px;
   }
 
+  @media (max-width: 1300px){
+    .features-img{
+        width: 25%;
+    }
+  }
+
+  @media (max-width: 1100px) {
+    .navdivwologo{
+        width: 40%;
+    }
+    
+    .navdivwlogo {
+        width: 25%;
+    }
+    .items{
+        padding: 10% 5%;
+        padding-top: 2%;
+    }
+    .category-items img{
+        height: 100px;
+        width: 100px;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .bg{
+        height: 60.8vh;
+    }
+    .bg img {
+        width: 65%;
+        height: 60vh;
+    }
+    .text-heading{
+        width: 30%;
+    }
+    .items{
+        padding: 10% 2.5%;
+        padding-top: 5%;
+    }
+    .brand{
+        width: 18%;
+    }
+    .brands{
+        width: 100%;
+        padding: 5% 10%;
+        gap: 7%;
+    }
+    .branditems{
+        width: 100%;
+    }
+    .features{
+        height: 40vh;
+    }
+    .whyus-cont{
+        width: 100%;
+        display: flex;
+        align-items: end;
+        justify-content: center;
+        height: 155px;
+        margin-top: 7vh;
+    }
+    .whyus{
+        width: 80%;
+    }
+    .footer-top{
+        height: 17vh;
+    }
+  }
+
+  @media (max-width: 850px){
+    .bg img {
+        width: 70%;
+        position: absolute;
+    }
+    .text-heading{
+        width: 95%;
+    }
+    .text-heading h1 {
+        font-size: 4.5vw;
+    }
+    .text-heading h2 {
+        font-size: 3.5vw;
+    }
+    .navdivwologo{
+        width: 45%;
+    }
+    
+    .navdivwlogo {
+        width: 30%;
+    }
+    .category-items img{
+        height: 90px;
+        width: 90px;
+    }
+    .category-items p{
+        font-size: 14px;
+    }
+    .category-section h1 {
+        padding-top: 8vw;
+    }
+    .rabbit{
+        height: 170px;
+        width: 170px;
+    }
+    .brands{
+        padding: 5%;
+    }
+    .features-img{
+        width: 28%;
+    }
+    .section2{
+        height: 75vh;
+    }
+    .whyus-cont{
+        margin-top: 3vh;
+    }
+    .img-dog-footer {
+        height: 25vh;
+    }
+    .footer p {
+        font-size: 15px;
+    }
+  }
+
+  @media (max-width: 700px){
+    .bg img {
+        width: 80%;
+        position: absolute;
+    }
+    .text-heading{
+        width: 95%;
+    }
+    .text-heading h1 {
+        font-size: 5vw;
+    }
+    .text-heading h2 {
+        font-size: 4vw;
+    }
+    .rabbit{
+        height: 150px;
+        width: 150px;
+    }
+    .features{
+        height: 35vh;
+    }
+    .brand{
+        height: 15vh;
+    }
+    .section2{
+        height: 65vh;
+    }
+    .footer p {
+        font-size: 14px;
+    }
+    .footer-top{
+        height: 14vh;
+    }
+    .section2-h1{
+        font-size: 40px;
+    }
+  }
+
+  @media (max-width: 620px){
+    .section2-h1{
+        font-size: 35px;
+    }
+    .bg img {
+        width: 90%;
+        position: absolute;
+        height: 50vh;
+    }
+    .bg{
+        height: 52vh;
+    }
+    .text-heading h1 {
+        font-size: 5.5vw;
+    }
+    .text-heading h2 {
+        font-size: 4.5vw;
+    }
+    .category-items img{
+        height: 80px;
+        width: 80px;
+    }
+    .category-items p{
+        font-size: 13px;
+    }
+    .items{
+        flex-wrap: wrap;
+        padding-bottom: 15vh;
+    }
+    .category-items{
+        width: 26%;
+    }
+    .section-h1{
+        font-size: 35px;
+    }
+    .features-img{
+        width: 30%;
+    }
+    .center{
+        width: 30%;
+    }
+    .whyus{
+        display: none;
+    }
+    .section2{
+        height: 50vh;
+    }
+    .brands{
+        padding-bottom: 0;
+    }
+    .category-section h1 {
+        padding-top: 15vh;
+    }
+    .img-dog-footer {
+        display: none;
+    }
+    .email-footer{
+        width: 100%;
+        height: 20vh;
+        align-items: center;
+    }
+    .info{
+        width: 80%;
+    }
+  }
+
+  @media (max-width: 550px){
+    .bg img {
+        width: 98%;
+        position: absolute;
+    }
+    .text-heading{
+        width: 98%;
+    }
+    .text-heading h1 {
+        font-size: 5.5vw;
+    }
+    .text-heading h2 {
+        font-size: 4.8vw;
+    }
+    .features{
+        height: 30vh;
+    }
+    .bg-img{
+        height: 50vh;
+    }
+    .section-h1{
+        font-size: 30px;
+    }
+    .h3shoppingtoday{
+        font-size: 14px;
+    }
+    .section2 {
+        height: 45vh;
+    }
+    .section2-h1 {
+        font-size: 30px;
+    }
+  }
+
+  @media (max-width: 475px){
+    .features-img{
+        width: 35%;
+    }
+    .text-heading h1 {
+        font-size: 6vw;
+    }
+    .text-heading h2 {
+        font-size: 5.2vw;
+    }
+    .bg img{
+        height: 45vh;
+    }
+    .bg{
+        height: 48vh;
+    }
+    .footer-top{
+        height: 10vh;
+    }
+    .info{
+        display: none;
+    }
+    .email-footer{
+        height: 20vh;
+    }
+    .footer-bar{
+        font-size: 10px;
+        padding-top: 20px;
+    }
+    .section2-h1 {
+        font-size: 25px;
+    }
+    .category-items img {
+        height: 70px;
+        width: 70px;
+    }
+    .category-items p {
+        font-size: 11px;
+    }
+    .footer-h2{
+        font-size: 25px;
+    }
+    .footer{
+        font-size: 10px;
+    }
+    .input-footer{
+        height: 30px;
+        width: 60%;
+        font-size: 10px;
+    }
+    .email-btn{
+        height: 30px;
+        width: 40%;
+    }
+    .email-h3-footer{
+        font-size: 12px;
+    }
+    .footer p{
+        font-size: 10px;
+    }
+    .brands {
+        padding: 2%;
+        gap: 4%;
+    }
+    .brand{
+        width: 21%;
+    }
+  }
 
 
