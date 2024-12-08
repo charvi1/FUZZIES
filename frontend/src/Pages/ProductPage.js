@@ -12,12 +12,14 @@ const ProductsPage = () => {
   const { categoryName } = useParams();
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [open, setOpen] = useState(null); // For toggling the filter sections
   const [cart, setCart] = useState([]);
   const [modalProduct, setModalProduct] = useState(null); // For feedback modal
   const [newFeedback, setNewFeedback] = useState(""); // Feedback input
+  const [filters, setFilters] = useState({ category: "", price: "", rating: "" });
 
   const toggle = (index) => {
     setOpen(open === index ? null : index);
@@ -30,6 +32,7 @@ const ProductsPage = () => {
           params: { categoryNames: categoryName },
         });
         setProducts(response.data);
+        setFilteredProducts(response.data); // Initially, all products are displayed
       } catch (err) {
         setError("Failed to load products. Please try again later.");
       } finally {
@@ -39,6 +42,38 @@ const ProductsPage = () => {
 
     fetchProducts();
   }, [categoryName]);
+
+  const applyFilters = () => {
+    let filtered = [...products];
+
+    // Apply price filter
+    if (filters.price) {
+      if (filters.price === "under50") filtered = filtered.filter((product) => product.price < 50);
+      if (filters.price === "50to100") filtered = filtered.filter((product) => product.price >= 50 && product.price <= 100);
+      if (filters.price === "over100") filtered = filtered.filter((product) => product.price > 100);
+    }
+
+    // Apply rating filter
+    if (filters.rating) {
+      if (filters.rating === "under4") filtered = filtered.filter((product) => product.rating < 4);
+      if (filters.rating === "4to4.5") filtered = filtered.filter((product) => product.rating >= 4 && product.rating <= 4.5);
+      if (filters.rating === "above4.5") filtered = filtered.filter((product) => product.rating > 4.5);
+    }
+
+    setFilteredProducts(filtered);
+  };
+
+  useEffect(() => {
+    applyFilters();
+  }, [filters]);
+
+  const handleFilterChange = (type, value) => {
+    setFilters((prevFilters) => ({ ...prevFilters, [type]: value }));
+  };
+  const resetFilters = () => {
+    setFilters({ category: "", price: "", rating: "" }); // Reset filters
+    setFilteredProducts(products); // Reset to show all products
+  };
 
   const handleAddToCart = async (product) => {
     try {
@@ -65,6 +100,7 @@ const ProductsPage = () => {
     }
   };
 
+  
   const openFeedbackModal = (product) => {
     setModalProduct(product);
   };
@@ -113,87 +149,55 @@ const ProductsPage = () => {
 
       <div className="product-aside">
         <div className="aside-content">
-          <div className="aside-category" onClick={() => toggle(1)}>
-            <p>Category</p> {open === 1 ? <IoMdArrowDropup /> : <TiArrowSortedDown />}
-          </div>
-          {open === 1 && (
-            <div className="aside-category-hidden product-show">
-              <div className="hidden-radio-container">
-                <input type="radio" name="category" />
-                <label>Food</label>
-              </div>
-              <div className="hidden-radio-container">
-                <input type="radio" name="category" />
-                <label>Accessories</label>
-              </div>
-              <div className="hidden-radio-container">
-                <input type="radio" name="category" />
-                <label>Toys</label>
-              </div>
-            </div>
-          )}
-
-          <div className="aside-category" onClick={() => toggle(2)}>
-            <p>Food Type</p> {open === 2 ? <IoMdArrowDropup /> : <TiArrowSortedDown />}
-          </div>
-          {open === 2 && (
-            <div className="aside-category-hidden product-show">
-              <div className="hidden-radio-container">
-                <input type="radio" name="food-type" />
-                <label>Dry</label>
-              </div>
-              <div className="hidden-radio-container">
-                <input type="radio" name="food-type" />
-                <label>Wet</label>
-              </div>
-            </div>
-          )}
-
           <div className="aside-category" onClick={() => toggle(3)}>
             <p>Price</p> {open === 3 ? <IoMdArrowDropup /> : <TiArrowSortedDown />}
           </div>
           {open === 3 && (
             <div className="aside-category-hidden product-show">
               <div className="hidden-radio-container">
-                <input type="radio" name="price" />
-                <label className="label">Under $50</label>
+                <input type="radio" name="price" onChange={() => handleFilterChange("price", "under50")} />
+                <label>Under $50</label>
               </div>
               <div className="hidden-radio-container">
-                <input type="radio" name="price" />
-                <label className="label">$50 - $100</label>
+                <input type="radio" name="price" onChange={() => handleFilterChange("price", "50to100")} />
+                <label>$50 - $100</label>
               </div>
               <div className="hidden-radio-container">
-                <input type="radio" name="price" />
-                <label className="label">Over $100</label>
+                <input type="radio" name="price" onChange={() => handleFilterChange("price", "over100")} />
+                <label>Over $100</label>
               </div>
             </div>
           )}
 
           <div className="aside-category" onClick={() => toggle(4)}>
-            <p>Brand</p> {open === 4 ? <IoMdArrowDropup /> : <TiArrowSortedDown />}
+            <p>Rating</p> {open === 4 ? <IoMdArrowDropup /> : <TiArrowSortedDown />}
           </div>
           {open === 4 && (
             <div className="aside-category-hidden product-show">
               <div className="hidden-radio-container">
-                <input type="radio" name="brand" />
-                <label>Brand A</label>
+                <input type="radio" name="rating" onChange={() => handleFilterChange("rating", "under4")} />
+                <label>Under 4</label>
               </div>
               <div className="hidden-radio-container">
-                <input type="radio" name="brand" />
-                <label>Brand B</label>
+                <input type="radio" name="rating" onChange={() => handleFilterChange("rating", "4to4.5")} />
+                <label>4 - 4.5</label>
               </div>
               <div className="hidden-radio-container">
-                <input type="radio" name="brand" />
-                <label>Brand C</label>
+                <input type="radio" name="rating" onChange={() => handleFilterChange("rating", "above4.5")} />
+                <label>Above 4.5</label>
               </div>
             </div>
           )}
         </div>
-      </div>
 
+        <button className="reset-button" onClick={resetFilters}>
+          Reset Filters
+        </button>
+      </div>
+      
       <div className="products">
-        {products.length > 0 ? (
-          products.map((product) => (
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map((product) => (
             <div key={product._id} className="product-card">
               <img src={product.images[0]} alt={product.name} />
               <div className="product-info">
@@ -215,7 +219,7 @@ const ProductsPage = () => {
           <p>No products found for this category.</p>
         )}
       </div>
-
+      
       {/* Feedback Modal */}
       {modalProduct && (
         <div className="modal">

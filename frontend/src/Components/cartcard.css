@@ -74,7 +74,7 @@
     height: 36px;
     font-size: 18px;
     font-weight: bold;
-    background-color: #4caf50;
+    background-color: #938372;
     color: #fff;
     border: none;
     border-radius: 50%;
@@ -83,7 +83,7 @@
 }
 
 .quantity-controls button:hover {
-    background-color: #45a049;
+    background-color: #CAC0B5;
     transform: scale(1.1);
 }
 
@@ -94,7 +94,7 @@
 
 /* Remove Button */
 .remove-button {
-    background-color: #f44336;
+    background-color: #7a6754;
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -105,10 +105,10 @@
 }
 
 .remove-button:hover {
-    background-color: #d32f2f;
+    background-color: #CAC0B5;
 }
 
 .remove-button:active {
-    background-color: #b71c1c;
+    background-color: #CAC0B5;
     transform: scale(0.95);
 }
