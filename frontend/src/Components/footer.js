@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios'; // Import Axios for API requests
 import '../App.css'; 
 import { FaFacebookF, FaInstagram, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 
@@ -6,16 +7,21 @@ const Footer = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
 
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
 
     if (!email || !/\S+@\S+\.\S+/.test(email)) {
       setMessage("Please enter a valid email address.");
       return;
     }
-    setMessage("Thank you for subscribing!");
+
+    try {
+      const response = await axios.post("http://localhost:2151/api/mail/send-email", { email });
+
+      setMessage("Thank you for subscribing! We've sent a confirmation email.");
+    } catch (error) {
+      setMessage("Failed to send email. Please try again later.");
+    }
 
     setEmail('');
   };
