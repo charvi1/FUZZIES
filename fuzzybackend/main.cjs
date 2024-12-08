@@ -24,13 +24,14 @@ const emailRoutes =require('./routes/email.cjs');
 const cartRouter = require('./routes/Cart.cjs');
 const paymentRoutes = require('./routes/payment.cjs');
 const billingRoutes = require('./routes/billing.cjs'); 
+const feedbackRoutes=require('./routes/feedback.cjs');
 app.use('/api/auth', authRoutes);
 app.use('/api/category', categoryRoutes);
 app.use('/api/products',productsRoutes);
 // app.use('/api/Wishlist', WishlistRoutes);
 app.use('/api/cart', cartRouter);
 app.use('/api/products',feedbackRoutes);
-app.use('./api',billingRoutes);
+app.use('/api',billingRoutes);
 app.use('/api/mail',emailRoutes);
 app.use('/api/payment',paymentRoutes);
 
