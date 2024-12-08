@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 const User = require('../models/User.cjs'); 
 const router = express.Router();
+const upload = require('../multerConfig.cjs');
 
 // User Signup
 router.post(
@@ -137,6 +138,35 @@ router.patch('/me', verifyToken, async (req, res) => {
 });
 
 
+router.post('/setPhoto' , upload.single('image'), async function setProfilePhoto(req,res) {
+    try{
+        const {email} = req.body;
+        const file = req.file;
+
+        if (!email) {
+            return res.status(400).json({ success: false, message: 'incorrect email' });
+        }
+        if (!file) {
+            return res.status(400).json({ success: false, message: 'No file uploaded' });
+        }
+
+        const user = await User.findOne({ email });
+
+        const imageUrl = file.path;
+        user.URL = imageUrl
+
+        await user.save();
+
+        return res.status(200).json({
+            success: true,
+            updatedUser: user
+        });
+
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ success: false, message: 'Server error' });
+    }
+} )
 
 // Middleware to verify token
 function verifyToken(req, res, next) {

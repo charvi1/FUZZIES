@@ -28,6 +28,7 @@ const UserSchema = new mongoose.Schema({
             }
         ],
         default:[]
-    }
+    },
+    URL: { type: String, default: '' }
 });
 module.exports = mongoose.model('User', UserSchema);
