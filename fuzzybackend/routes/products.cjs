@@ -157,5 +157,38 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+router.get('/', async (req, res) => {
+    try {
+        let filter = {};
+
+        // Handle category filter
+        if (req.query.categoryNames) {
+            const categoryNames = req.query.categoryNames.split(',').map(name => name.trim());
+            const categories = await Category.find({ name: { $in: categoryNames } });
+            filter.category = { $in: categories.map(category => category._id) };
+        }
+
+        // Handle price filter
+        if (req.query.price) {
+            if (req.query.price === "under50") filter.price = { $lt: 50 };
+            if (req.query.price === "50to100") filter.price = { $gte: 50, $lte: 100 };
+            if (req.query.price === "over100") filter.price = { $gt: 100 };
+        }
+
+        // Handle rating filter
+        if (req.query.rating) {
+            if (req.query.rating === "under4") filter.rating = { $lt: 4 };
+            if (req.query.rating === "4to4.5") filter.rating = { $gte: 4, $lte: 4.5 };
+            if (req.query.rating === "above4.5") filter.rating = { $gt: 4.5 };
+        }
+
+        // Find and return the filtered products
+        const products = await Product.find(filter);
+        res.json(products);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
 
 module.exports = router;
