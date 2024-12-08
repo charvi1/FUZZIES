@@ -78,24 +78,19 @@ const CartPage = () => {
             };
 
             setShipmentDetails(shipmentDetails); // Save shipment details in state
+             // Fix amount calculation
+        const roundedAmount = Math.round(totalAmount * 100); // Convert to paise/cents
 
             // Stripe payment API request
             const response = await axios.post('http://localhost:2151/api/payment/checkout', {
                 token: token.id,
-                amount: totalAmount * 100, // Amount in cents for Stripe
+                amount: roundedAmount, // Amount in cents for Stripe
                 currency: 'INR',
             });
 
             if (response.status === 200 && response.data.success) {
-                // Save billing details after successful payment
-                await axios.post('http://localhost:2151/api/billing', {
-                    email,
-                    shipmentDetails,
-                    totalAmount,
-                    paymentReceipt: response.data.receiptUrl,
-                });
-
-                await clearCart(); // Clear the cart
+              
+                 await clearCart(); // Clear the cart
                 setPaymentSuccess(true);
                 toast.success('Payment Successful!');
 
