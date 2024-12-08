@@ -6,6 +6,7 @@ const app= express();
  const mongoose = require('mongoose');
 const cors = require('cors');
 const port = process.env.PORT || 2323; // Fallback to 2323 if PORT is not defined in .env
+const nodemailer = require('nodemailer');
 
 // Middleware
 app.use( cors());
@@ -15,7 +16,7 @@ app.use(bodyParser.json());
 const categoryRoutes = require('./routes/category.cjs');
 const productsRoutes=require('./routes/products.cjs');
 const authRoutes = require('./routes/auth.cjs');
-
+const emailRoutes =require('./routes/email.cjs');
 // const WishlistRoutes=require('./routes/Wishlist.cjs');
 const cartRouter = require('./routes/Cart.cjs');
 const feedbackRoutes =require('./routes/feedback.cjs');
@@ -26,7 +27,7 @@ app.use('/api/products',productsRoutes);
 // app.use('/api/Wishlist', WishlistRoutes);
 app.use('/api/cart', cartRouter);
 app.use('/api/products',feedbackRoutes);
-
+app.use('/api/mail',emailRoutes);
 // Database
 mongoose.connect(process.env.MONGODB_URI)
     .then(() => console.log('Connected to MongoDB Atlas'))
