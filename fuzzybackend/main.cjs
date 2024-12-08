@@ -30,6 +30,9 @@ app.use('/api/products',productsRoutes);
 // app.use('/api/Wishlist', WishlistRoutes);
 app.use('/api/cart', cartRouter);
 app.use('/api/products',feedbackRoutes);
+app.use('./api',billingRoutes);
+app.use('/api/mail',emailRoutes);
+app.use('/api/payment',paymentRoutes);
 
 // Database
 mongoose.connect(process.env.MONGODB_URI)
