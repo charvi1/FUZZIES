@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 // Route to handle email sending
-app.post('/send-email', async (req, res) => {
+router.post('/send-email', async (req, res) => {
     const { email } = req.body;
   
     const mailOptions = {
