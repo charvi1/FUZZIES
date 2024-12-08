@@ -1,5 +1,6 @@
 const User = require('../models/User.cjs');
 const mongoose = require('mongoose');
+//import StripeCheckout from "react-stripe-checkout";
 const getCart = async (req,res) => {
     const {email} = req.body;
     try{
@@ -156,9 +157,3 @@ const updateCart = async (req, res) => {
 };
 
 module.exports = { addToCart, getCart, removeFromCart, updateCart };
-
-
-
-
-
-

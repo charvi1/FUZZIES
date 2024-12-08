@@ -1,5 +1,17 @@
 const mongoose = require('mongoose');
 const {v4:uuidv4} = require('uuid');
+const BillingSchema = new mongoose.Schema({
+    shipmentDetails: {
+        address: { type: String, required: true },
+        phone: { type: String, required: false},
+        city: { type: String, required: true },
+        
+    },
+    totalAmount: { type: Number, required: true },
+    paymentStatus: { type: String, default: 'Paid' },
+    paymentReceipt: { type: String },  // If you want to save the Stripe receipt URL
+    date: { type: Date, default: Date.now },
+});
 
 const UserSchema = new mongoose.Schema({
     name: { type: String, required: true },
@@ -29,6 +41,8 @@ const UserSchema = new mongoose.Schema({
         ],
         default:[]
     },
-    URL: { type: String, default: '' }
+    URL: { type: String, default: '' },
+    billing: [BillingSchema],
 });
-module.exports = mongoose.model('User', UserSchema);
+const User = mongoose.model('User', UserSchema);
+module.exports = User;

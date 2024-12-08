@@ -3,6 +3,10 @@ import './cart.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import CartCard from './CartCard';
+import StripeCheckout from 'react-stripe-checkout'; // Import StripeCheckout
+import { ToastContainer, toast } from 'react-toastify'; // Import toast for notifications
+import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
+import BillingForm from "../Pages/BillingForm"; // Import BillingForm
 
 const CartPage = () => {
     const navigate = useNavigate();
@@ -10,12 +14,13 @@ const CartPage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [totalAmount, setTotalAmount] = useState(0); // State to store total amount
+    const [shipmentDetails, setShipmentDetails] = useState({}); // State to store shipment details
+    const [paymentSuccess, setPaymentSuccess] = useState(false); // State for tracking payment success
 
-    // Retrieve user email from local storage
     const user = JSON.parse(localStorage.getItem('user'));
     const email = user ? user.email : null;
 
-    // Fetch user cart data
+    // Fetch cart data from the backend
     const fetchUserCart = async () => {
         try {
             const response = await axios.post('http://localhost:2151/api/cart', { email });
@@ -33,14 +38,73 @@ const CartPage = () => {
         }
     };
 
-    // Function to calculate total bill
+    // Calculate total amount for cart
     const calculateTotal = (cartItems) => {
         let total = 0;
-        cartItems.forEach(item => {
+        cartItems.forEach((item) => {
             total += item.productId.price * item.quantity; // Multiply price by quantity for each item
         });
         setTotalAmount(total); // Set total amount in state
     };
+
+    // Clear cart data
+    const clearCart = () => {
+        setCart([]); // Clear cart items
+        setTotalAmount(0); // Reset total amount
+        toast.success('Cart has been cleared!');
+    };
+
+    // Handle Stripe payment token and shipment details
+    const handleToken = async (token) => {
+        try {
+            // Extract addresses from the token object
+            const shipmentDetails = {
+                name: token.card.billing_address_name || 'Unknown',
+                address: token.card.billing_address_line1 || 'Not Available',
+                city: token.card.billing_address_city || 'Not Available',
+                postcode: token.card.billing_address_zip || 'Not Available',
+                phone: token.card.billing_address_country || 'Not Available',
+            };
+    
+            setShipmentDetails(shipmentDetails); // Save shipment details in state
+    
+            // Stripe payment API request
+            const response = await axios.post('http://localhost:2151/api/payment/checkout', {
+                token: token.id,
+                amount: totalAmount * 100, // Amount in cents for Stripe
+                currency: 'INR',
+            });
+    
+            // Log totalAmount and payment receipt
+            console.log("Total Amount:", totalAmount); // Debug total amount
+            console.log("Payment Receipt URL:", response.data.receiptUrl); // Debug payment receipt URL
+    
+            if (response.status === 200 && response.data.success) {
+                // Save billing details after successful payment
+                await axios.post('http://localhost:2151/api/billing', {
+                    email,
+                    shipmentDetails,
+                    totalAmount,
+                    paymentReceipt: response.data.receiptUrl,
+                });
+    
+                clearCart(); // Clear the cart
+                setPaymentSuccess(true);
+                toast.success('Payment Successful!');
+                navigate('/form', {
+                    state: { paymentReceipt: response.data.receiptUrl, // Payment receipt URL
+        totalAmount: totalAmount,    }, // Navigate with the order ID
+                });
+            } else {
+                throw new Error('Payment failed');
+            }
+        } catch (error) {
+            console.error('Payment Error:', error);
+            toast.error('Payment failed! Please try again.');
+        }
+    };
+    
+    
 
     // Remove item from cart
     const removeFromCart = async (productId) => {
@@ -49,19 +113,22 @@ const CartPage = () => {
                 data: { email, productId },
             });
             if (response.data.success) {
-                setCart(cart.filter((item) => item.productId._id !== productId));
-                calculateTotal(cart.filter((item) => item.productId._id !== productId)); // Recalculate total
+                const updatedCart = cart.filter((item) => item.productId._id !== productId);
+                setCart(updatedCart);
+                calculateTotal(updatedCart); // Recalculate total
+                toast.success('Item removed from cart!');
             } else {
-                console.error('Failed to remove item from cart:', response.data.message);
+                toast.error('Failed to remove item from cart.');
             }
         } catch (error) {
             console.error('Error removing item from cart:', error);
+            toast.error('Error removing item from cart.');
         }
     };
 
-    // Update cart item quantity
+    // Update cart quantity
     const updateCartQuantity = (productId, quantity) => {
-        const updatedCart = cart.map(item => {
+        const updatedCart = cart.map((item) => {
             if (item.productId._id === productId) {
                 item.quantity = quantity;
             }
@@ -71,7 +138,7 @@ const CartPage = () => {
         calculateTotal(updatedCart); // Recalculate total with updated quantities
     };
 
-    // Fetch user cart on component mount
+    // Fetch user cart on component mount or when email changes
     useEffect(() => {
         if (email) {
             fetchUserCart();
@@ -89,11 +156,8 @@ const CartPage = () => {
             <div className="main-color"></div>
             <div className="cartPage-container">
                 {cart.length > 0 ? (
-                    
-                    <div className="checkout">
+                    <div className="checkout cart-items">
                         <h2 className="shopping-cart">Your Shopping Cart</h2>
-                        <div className='cart-div-container'>
-                        <div className='cart-items'>
                         {cart.map((item) => (
                             <CartCard
                                 key={item._id}
@@ -101,16 +165,22 @@ const CartPage = () => {
                                 removeFromCart={removeFromCart}
                                 updateCartQuantity={updateCartQuantity} // Pass the update function as a prop
                             />
-                            
                         ))}
-                        </div>
-                        <div className='price-breakdown'>
                         <div className="total-amount">
-                            <h3>Total Bill: ${totalAmount.toFixed(2)}</h3>
+                            <h3>Total: ₹{totalAmount.toFixed(2)}</h3>
                         </div>
-                        <button className='checkout-btn' onClick={() => navigate('/checkout')}>Proceed to Checkout</button>
-                        </div>
-                        </div>
+
+                         <StripeCheckout
+                            stripeKey="pk_test_51QRqmdAyGJh6v8kKbXdiwTGWQ9hcqVvYJgFkTPcJ6D9rLxcqjWlMzmnntA66J4jJcvlZH6PHOge4qXowbxyCBVMo001Azf7VzO"
+                            token={handleToken}
+                            amount={totalAmount * 100} // Stripe requires amount in cents
+                            currency="INR"
+                            name="FUZZIES"
+                            billingAddress={true}
+                            shippingAddress={true}
+                        >
+                            <button className="buy-now-button">Buy Now</button>
+                        </StripeCheckout>
                     </div>
                 ) : (
                     <div className="checkout empty-cart">
@@ -122,6 +192,7 @@ const CartPage = () => {
                     </div>
                 )}
             </div>
+            <ToastContainer /> {/* Toast notification container */}
         </main>
     );
 };

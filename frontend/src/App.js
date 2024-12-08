@@ -6,6 +6,8 @@ import About from './Pages/about';
 import SignupLogin from './Pages/SignupLogin';
 import CategoryList from './Pages/CategoryList';
 import Cart from './Pages/Cart';
+import BillingForm from './Pages/BillingForm';
+import BillingPage from './Components/BillingPage';
 import Product from './Pages/Product';
 import AdminDashboard from './Pages/AdminDashboard';
 import ProfilePage from './Components/ProfilePage';
@@ -58,6 +60,8 @@ function App() {
                     <Route path="/login" element={!isAuthenticated ? <SignupLogin onLogin={handleLogin} /> : <Navigate to="/" />} />
                     <Route path="/signup" element={!isAuthenticated ? <SignupLogin onLogin={handleLogin} /> : <Navigate to="/" />} />
                     <Route path="/cart" element={isAuthenticated ? <Cart /> : <Navigate to="/login" />} />
+                    <Route path="/billing" element={isAuthenticated ? <BillingPage/> : <Navigate to="/login"/>} />
+                    <Route path="/form" element={isAuthenticated ? <BillingForm/> : <Navigate to="/login"/>} />
                     <Route path="/admin" element={isAuthenticated && isAdmin ? <AdminDashboard /> : <Navigate to="/" />} />
                     <Route path="/profile" element={isAuthenticated ? <ProfilePage /> : <Navigate to="/login" />} />
                 </Routes>
