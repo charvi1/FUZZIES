@@ -41,6 +41,7 @@ const UserSchema = new mongoose.Schema({
         ],
         default:[]
     },
+    URL: { type: String, default: '' },
     billing: [BillingSchema],
 });
 const User = mongoose.model('User', UserSchema);

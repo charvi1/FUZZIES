@@ -14,6 +14,7 @@ const ProfilePage = () => {
     const [location, setLocation] = useState('');
     const [alternatePhone, setAlternatePhone] = useState('');
     const [hintName, setHintName] = useState('');
+    const [selectedFile, setSelectedFile] = useState(null);
 
     useEffect(() => {
         const fetchUserProfile = async () => {
@@ -75,6 +76,44 @@ const ProfilePage = () => {
         }
     };
 
+    const handleFileChange = (event) => {
+        setSelectedFile(event.target.files[0]);
+        console.log(selectedFile);
+    };
+
+    const User = JSON.parse(localStorage.getItem("user")); // Retrieve user data
+    const email = User ? User.email : null;
+
+    const handleUpload = async () => {
+        if (!selectedFile) {
+            // handleError("Please select a file first!");
+            alert('Please select a file first!')
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('image', selectedFile);
+        formData.append('email', email);
+        for (let [key, value] of formData.entries()) {
+            console.log(key, value);
+        }
+
+
+        try {
+            const response = await axios.post('http://localhost:2151/api/auth/setPhoto', formData);
+
+            if (response.data.success) {
+                console.log(response.data.profilePhotoUrl);
+                setUser(response.data.updatedUser)
+                // handleSuccess('profile photo updated');
+            }
+        } catch (error) {
+            console.error('Error uploading photo:', error);
+            // handleError('Error uploading photo');
+        }
+    };
+
+
     const handleEdit = () => {
         setIsEditing(true);
     };
@@ -94,9 +133,25 @@ const ProfilePage = () => {
                 <div
                     className="profile-image"
                     style={{
-                        backgroundImage: `url(${user.profileImage || 'https://via.placeholder.com/150'})`, // Fallback to placeholder
+                        backgroundImage: `url(${user.URL || 'https://via.placeholder.com/150'})`, 
                     }}
                 ></div>
+                 {/* Hidden file input */}
+                 <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleFileChange}
+                        id="file-upload"
+                        style={{ display: 'none' }}
+                    />
+                    {/* Add Profile Picture Button */}
+                    <label htmlFor="file-upload" className="profile-upload-button">
+                        Add Profile Picture
+                    </label>
+                    {/* Upload button */}
+                    <button onClick={handleUpload}>
+                        Upload
+                    </button>
                 <div className="profile-username">{user.name}</div> 
             </div>
             <div className="profile-details">
