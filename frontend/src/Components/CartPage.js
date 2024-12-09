@@ -184,8 +184,8 @@ const CartPage = () => {
                             amount={totalAmount * 100} // Stripe requires amount in cents
                             currency="INR"
                             name="FUZZIES"
-                            billingAddress={true}
-                            shippingAddress={true}
+                            // billingAddress={true}
+                            // shippingAddress={true}
                         >
                             <button className="buy-now-button">Buy Now</button>
                         </StripeCheckout>
