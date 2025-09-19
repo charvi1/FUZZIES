@@ -50,7 +50,7 @@ const BillingForm = ({ setPaymentReceipt = () => {}, setShipmentDetails = () => 
 
         try {
             const response = await axios.post(
-                "http://localhost:2151/api/billing",
+                "https://fuzzies-2-bxhr.onrender.com/api/billing",
                 billingData,
                 { headers: { "Content-Type": "application/json" } }
             );

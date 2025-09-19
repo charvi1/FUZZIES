@@ -25,7 +25,7 @@ const ProfilePage = () => {
                     return;
                 }
 
-                const res = await axios.get('http://localhost:2151/api/auth/me', {
+                const res = await axios.get('https://fuzzies-2-bxhr.onrender.com/api/auth/me', {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -62,7 +62,7 @@ const ProfilePage = () => {
                 hintName,
             };
 
-            const res = await axios.patch('http://localhost:2151/api/auth/me', updatedData, {
+            const res = await axios.patch('https://fuzzies-2-bxhr.onrender.com/api/auth/me', updatedData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -100,7 +100,7 @@ const ProfilePage = () => {
 
 
         try {
-            const response = await axios.post('http://localhost:2151/api/auth/setPhoto', formData);
+            const response = await axios.post('https://fuzzies-2-bxhr.onrender.com/api/auth/setPhoto', formData);
 
             if (response.data.success) {
                 console.log(response.data.profilePhotoUrl);

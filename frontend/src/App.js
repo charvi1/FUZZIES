@@ -54,6 +54,7 @@ function App() {
             <main>
                 <Routes>
                     <Route path="/" element={isAuthenticated ? <Home /> : <Navigate to="/login" />} />
+                    
                     <Route path="/about" element={isAuthenticated ? <About /> : <Navigate to="/login" />} />
                     <Route path="/products/:categoryName" element={isAuthenticated ? <Product /> : <Navigate to="/login" />} />
                     <Route path="/categories" element={isAuthenticated ? <CategoryList /> : <Navigate to="/login" />} />

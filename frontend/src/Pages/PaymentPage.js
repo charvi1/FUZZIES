@@ -14,7 +14,7 @@ const PaymentPage = () => {
         try {
             setPaymentProcessing(true);
             const totalAmount = 200; // Replace with dynamic total amount
-            const response = await axios.post('http://localhost:2151/api/orders', {
+            const response = await axios.post('https://fuzzies-2-bxhr.onrender.com/api/orders', {
                 email,
                 shippingAddress,
                 totalAmount,
