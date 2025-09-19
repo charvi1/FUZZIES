@@ -13,8 +13,8 @@ const nodemailer = require('nodemailer');
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "http://localhost:3000", 
-  "https://fuzzies-f4ym.vercel.app/" 
+  "http://localhost:3000",
+  "https://fuzzies-f4ym.vercel.app"  // no trailing slash
 ];
 
 app.use(cors({
@@ -25,8 +25,14 @@ app.use(cors({
       callback(new Error("Not allowed by CORS"));
     }
   },
-  credentials: true, // allow cookies/auth headers if needed
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 }));
+
+// Explicitly handle preflight requests
+app.options("*", cors());
+
 
 app.use(bodyParser.json());
 
