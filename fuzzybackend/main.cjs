@@ -11,8 +11,23 @@ const port = process.env.PORT || 2323;
 
 const nodemailer = require('nodemailer');
 
-// Middleware
-app.use( cors());
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:3000", 
+  "https://fuzzies-f4ym.vercel.app/" 
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true, // allow cookies/auth headers if needed
+}));
+
 app.use(bodyParser.json());
 
 // Routes
