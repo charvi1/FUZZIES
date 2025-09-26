@@ -11,14 +11,8 @@ const port = process.env.PORT || 2323;
 
 const nodemailer = require('nodemailer');
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "http://localhost:3000",
-  "https://fuzzies-f4ym.vercel.app"  // no trailing slash
-];
-
 app.use(cors({
-  origin: ['https://fuzzies-2-bxhr.onrender.com', 'https://another-allowed-domain.com',
+  origin: ['https://fuzzies-f4ym.vercel.app', 'https://another-allowed-domain.com',
     'http://localhost:3000',
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
