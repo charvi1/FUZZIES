@@ -18,36 +18,75 @@
     top: 0;
     width: 100%;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    /* subtle shadow for depth */
+    height: 70px; /* Specific height for consistency */
+    display: flex;
+    justify-content: center;
 }
 
-nav ul {
+.header-container {
+    width: 90%;
+    max-width: 1400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+nav {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-list {
     list-style: none;
     display: flex;
-    width: 85%;
-    justify-content: space-between;
-    /* justify-content:space-evenly; */
+    width: 100%;
+    justify-content: flex-end; /* Align all to the right or spread? Let's try spread logic manually */
     align-items: center;
     font-weight: 500;
-    margin: auto;
+    gap: 40px;
 }
 
-.navdivwologo {
+.nav-links {
     display: flex;
-    justify-content: space-around;
-    width: 30%;
-}
-
-.navdivwologo li:hover {
-    transition: all ease 0.5s;
-    border-bottom: 2px solid #553326;
-}
-
-.navdivwlogo {
-    display: flex;
-    justify-content: space-around;
-    width: 20%;
+    justify-content: center;
+    gap: 30px;
     align-items: center;
+    margin-right: auto; /* Pushes icons to the right if links are center-left, or remove for center */
+    margin-left: 50px; /* Space from logo */
+}
+
+.nav-icons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    align-items: center;
+}
+
+.nav-links li:hover a {
+    color: #553326;
+    transition: 0.3s;
+}
+
+/* Specific link styling to override generic nav a if needed */
+.nav-links a {
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #553326;
+    transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 
@@ -100,22 +139,17 @@ nav a i {
 
 
 
-hr {
-    width: 85%;
-    margin: auto;
-    border: 0.5px solid #25282359;
-    margin-bottom: 20px;
-}
+/* HR Removed */
 
 .logo {
-    width: 100%;
+    height: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
 }
 
 .logo img {
-    width: 15%;
+    height: 50px; /* Adjust based on header height */
+    width: auto;
 }
 
 .bg {
