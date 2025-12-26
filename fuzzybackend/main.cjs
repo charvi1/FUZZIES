@@ -12,7 +12,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const nodemailer = require('nodemailer');
 
 app.use(cors({
-  origin: ['https://fuzzies-f4ym.vercel.app', 'http://localhost:3000', 'http://localhost:5173'], // Added common local ports
+  origin: ['https://fuzzies-f4ym.vercel.app', 'https://fuzzies-sbun.vercel.app', 'http://localhost:3000', 'http://localhost:5173'], // Added new Vercel domain
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], // Added PATCH
   credentials: true
 }));
