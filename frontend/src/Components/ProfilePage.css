@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alef:wght@400;700&family=League+Spartan:wght@100..900&display=swap');
+
+.profile-main {
+    background-color: #fdfbf7;
+    /* Warm White */
+    padding: 40px 20px;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-container {
+    padding: 40px;
+    border: none;
+    border-radius: 20px;
+    background-color: #613e34;
+    /* Brand Dark Brown */
+    color: #FAF9F6;
+    display: flex;
+    justify-content: space-between;
+    width: 65%;
+    box-shadow: 0 10px 30px rgba(97, 62, 52, 0.2);
+    align-items: center;
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 35%;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    padding-right: 20px;
+}
+
+.profile-image {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background-color: #CAC0B5;
+    /* Beige */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 20px;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.profile-username {
+    font-size: 28px;
+    font-weight: bold;
+    font-family: 'Quattrocento', serif;
+    margin-bottom: 5px;
+    color: #f39c12;
+    /* Gold Accent */
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    width: 55%;
+    justify-content: center;
+    padding-left: 20px;
+}
+
+.profile-details p {
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+}
+
+.profile-error-message {
+    color: #e74c3c;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Unified Button Style */
+.edit-button-profile,
+.profile-save-button,
+.profile-upload-button {
+    padding: 12px 24px;
+    background-color: #f39c12;
+    /* Gold */
+    font-family: 'League Spartan', sans-serif;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+.edit-button-profile:hover,
+.profile-save-button:hover,
+.profile-upload-button:hover {
+    background-color: #e67e22;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(243, 156, 18, 0.3);
+}
+
+.profile-cancel-button,
+.upload-button-profile {
+    padding: 12px 24px;
+    background-color: rgba(255, 255, 255, 0.1);
+    font-family: 'League Spartan', sans-serif;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+.profile-cancel-button:hover,
+.upload-button-profile:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.MulterPhoto {
+    padding-top: 1.5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-details-fontFamily {
+    font-family: Quattrocento;
+}
+
+.profile-details input {
+    padding: 2px 12px;
+    outline: none;
+}
+
+.profile-details select {
+    padding: 2px 12px;
+    outline: none;
+}

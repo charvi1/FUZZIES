@@ -1,0 +1,433 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alef:wght@400;700&family=League+Spartan:wght@100..900&display=swap');
+
+/* Container for the entire products page */
+/* Container for the entire products page */
+.products-page {
+    background-color: #f9f9f9;
+    display: flex;
+    min-height: 100vh;
+    height: auto;
+    position: relative;
+    width: 100%;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll */
+}
+
+.product-aside {
+    flex: 0 0 280px;
+    /* Fixed width sidebar, doesn't shrink/grow */
+    background-color: #613e34;
+    /* Brand Dark Brown */
+    padding: 30px 15px;
+    height: calc(100vh - 80px);
+    /* Sticky full height */
+    position: sticky;
+    top: 80px;
+    /* Offset for header */
+    overflow-y: auto;
+    border-top-right-radius: 20px;
+    /* Soft corner */
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+    /* Subtle depth */
+}
+
+.aside-category {
+    padding: 15px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    /* Subtle divider */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #FAF9F6;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    /* Slight radius for hover items */
+}
+
+.aside-category:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Lighten on hover */
+    padding-left: 20px;
+    /* Slide effect */
+}
+
+.brand-border {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hidden-radio-container label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.aside-category p {
+    color: #FAF9F6;
+    font-family: 'League Spartan', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.aside-category-hidden {
+    padding: 10px 15px 20px 25px;
+    /* Indented for submenu look */
+    display: none;
+    background-color: rgba(0, 0, 0, 0.1);
+    /* Slightly darker for nested */
+    border-radius: 0 0 8px 8px;
+    margin-top: -5px;
+    /* Connect to parent */
+    margin-bottom: 5px;
+}
+
+.product-show {
+    display: block;
+}
+
+/* ... (hidden radio styles etc remain same, not changing them here) ... */
+
+/* Container for the product grid */
+.products {
+    flex: 1;
+    /* Take remaining space */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    /* Responsive grid */
+    gap: 30px;
+    padding: 40px;
+    width: auto;
+    /* Let grid control width */
+    position: relative;
+    z-index: 1;
+    min-height: 80vh;
+    align-content: start;
+    /* Prevent stretching */
+}
+
+/* Individual product card */
+.product-card {
+    background-color: #CAC0B5;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    /* Softer corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    /* Softer shadow */
+    overflow: hidden;
+    width: 100%;
+    /* Fill grid cell */
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Product image */
+.product-card img {
+    width: 100%;
+    height: 295px;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 17px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: 90%;
+    height: 220px;
+}
+
+.product-info h2 {
+    font-size: 20px;
+    font-family: Quattrocento;
+}
+
+.product-info p {
+    font-size: 15px;
+    font-family: Courier Prime;
+    /* Corrected the font name */
+}
+
+.paragraphs-product {
+    height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.product-cart-button {
+    font-family: "League Spartan", system-ui;
+    letter-spacing: 1.5px;
+    text-align: center;
+    padding: 10px;
+    background-color: #613e34;
+    /* Brand Dark Brown */
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: auto;
+    transition: all 0.3s ease;
+}
+
+.reset-button {
+    text-align: center;
+    padding: 10px;
+    background-color: #613e34;
+    /* Brand Dark Brown */
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: auto;
+    font-family: Courier Prime;
+    transition: all 0.3s ease;
+}
+
+.product-cart-button:focus {
+    outline: 2px solid #f39c12;
+    /* Example focus style */
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 20px rgba(97, 62, 52, 0.2);
+}
+
+.product-cart-button:hover,
+.reset-button:hover {
+    background-color: #f39c12;
+    /* Gold Accent */
+    transform: translateY(-2px);
+}
+
+.bone-icon {
+    margin-left: 5px;
+}
+
+.feedback-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.feedback-content {
+    background: #fff;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.feedback-textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* .feedback-content button {
+    margin: 5px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  } */
+
+.feedback-content button:hover {
+    background-color: #0056b3;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #fdfbf7;
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    position: relative;
+    border: 1px solid #e0e0e0;
+}
+
+.modal-content h3 {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-family: Quattrocento;
+    color: #613e34;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.ulmodel {
+    padding: 0;
+    list-style: none;
+    margin-bottom: 20px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.limodel {
+    background: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.emailkiclass {
+    display: block;
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-family: 'League Spartan', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.modal-content textarea {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+    resize: vertical;
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.modal-content textarea:focus {
+    border-color: #613e34;
+}
+
+.feedbacksubmit {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background-color: #613e34;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'League Spartan', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.feedbacksubmit:hover {
+    background-color: #7a4e41;
+    transform: translateY(-2px);
+}
+
+.closebutton {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #613e34;
+    background-color: transparent;
+    color: #613e34;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s;
+}
+
+.closebutton:hover {
+    background-color: #f0f0f0;
+}
+
+
+/* Feedback button */
+.feedback-button {
+    font-family: "League Spartan", system-ui;
+    letter-spacing: 1.5px;
+    text-align: center;
+    padding: 10px;
+    background-color: #613e34;
+    /* Brand Dark Brown */
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: auto;
+    transition: all 0.3s ease;
+}
+
+.feedback-button:focus {
+    outline: 2px solid #f39c12;
+}
+
+.feedback-button:hover {
+    background-color: #f39c12;
+    /* Gold Accent */
+    transform: translateY(-2px);
+}
